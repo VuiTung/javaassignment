@@ -1,3 +1,2 @@
-1,Charles Sim,123,20,0128778888,charles@mail.apu.edu.my,Delivery staff
-2,Willis Chang,123,20,0129947792,willis@mail.edu.my.com,Delivery staff
-3,Liong Vui Tung,123,20,0128778888,snowlax@gmail.com,Managing staff
+1,Liong Vui Tung,123,20,Male,0126667777,TP050801@mail.apu.edu.my,Managing staff,night shift
+2,Willis Chang Kai Xun,123,20,Male,0127778888,TP050800@mail.apu.edu.my,Delivery staff,ST5656D

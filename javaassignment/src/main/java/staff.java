@@ -16,8 +16,9 @@ public class staff {
     private String PN;
     private String Email;
     private String Position;
-
-    public staff(String Fullname, int ID, String Password, int Age, String PN, String Email, String Position) {
+    private String Gender;
+    public staff(){}
+    public staff(String Fullname, int ID, String Password, int Age, String PN, String Email, String Position, String Gender) {
         this.Fullname = Fullname;
         this.ID = ID;
         this.Password = Password;
@@ -25,6 +26,15 @@ public class staff {
         this.PN = PN;
         this.Email = Email;
         this.Position = Position;
+        this.Gender = Gender;
+    }
+
+    public String getGender() {
+        return Gender;
+    }
+
+    public void setGender(String Gender) {
+        this.Gender = Gender;
     }
 
     public String getFullname() {
@@ -82,5 +92,53 @@ public class staff {
     public void setPosition(String Position) {
         this.Position = Position;
     }
-    
 }
+class managingStaff extends staff{
+        private String shift;
+
+    public managingStaff(String shift) {
+        this.shift = shift;
+    }
+
+    public managingStaff(String shift, String Fullname, int ID, String Password, int Age, String PN, String Email, String Position, String Gender) {
+        super(Fullname, ID, Password, Age, PN, Email, Position, Gender);
+        this.shift = shift;
+    }
+
+        
+
+        public String getShift() {
+            return shift;
+        }
+
+        public void setShift(String shift) {
+            this.shift = shift;
+        }
+        
+    }
+class deliveryStaff extends staff{
+        private String Assignedtransport;
+
+    public deliveryStaff(String Assignedtransport) {
+        this.Assignedtransport = Assignedtransport;
+    }
+
+    public deliveryStaff(String Assignedtransport, String Fullname, int ID, String Password, int Age, String PN, String Email, String Position, String Gender) {
+        super(Fullname, ID, Password, Age, PN, Email, Position, Gender);
+        this.Assignedtransport = Assignedtransport;
+    }
+
+        
+       
+
+        public String getAssignedtransport() {
+            return Assignedtransport;
+        }
+
+        public void setAssignedtransport(String Assignedtransport) {
+            this.Assignedtransport = Assignedtransport;
+        }
+        
+    }
+
+  
