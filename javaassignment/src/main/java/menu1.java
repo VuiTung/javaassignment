@@ -1,3 +1,8 @@
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,12 +14,14 @@
  * @author user
  */
 public class menu1 extends javax.swing.JFrame {
-
+    String name="Liong Vui Tung";
     /**
      * Creates new form menu1
      */
     public menu1() {
         initComponents();
+        
+        jLabel1.setText("Welcome, " + name);
     }
 
     /**
@@ -127,9 +134,42 @@ public class menu1 extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
-
+    private static Scanner sc;
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        try{
+       File file1 = new File ("assi.txt");
+        sc = new Scanner(file1);
+       String temp;
+       boolean found =false;
+        while(sc.hasNext()&& !found){
+            temp=sc.nextLine();
+            String []tempArr = temp.split(",");            
+            if(name.equals(tempArr[1])){
+                int id = Integer.parseInt(tempArr[0]);
+                int age = Integer.parseInt(tempArr[3]);
+                String PN = tempArr[5];
+                String email = tempArr[6];
+                String password = tempArr[2];
+                found = true;
+                String update[] = new String[20];
+               update[0]=name;
+               update[1]=Integer.toString(id);
+               update[2]=Integer.toString(age);
+               update[3]=PN;
+               update[4]=email;
+               update[5]=password;
+               Updateprofile.main(update);
+           this.setVisible(false); 
+           
+       
+            }
+            }
+        
+       }catch (FileNotFoundException ex){
+           ex.toString();
+       }finally{
+            sc.close();
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
@@ -158,7 +198,7 @@ public class menu1 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(menu1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+    
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

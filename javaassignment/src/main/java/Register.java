@@ -202,7 +202,7 @@ public class Register extends javax.swing.JFrame implements ActionListener {
         err.setForeground(new java.awt.Color(255, 0, 51));
         err.setToolTipText("");
 
-        SorT.setText("assigned transport");
+        SorT.setText("Assigned transport");
 
         night.setText("Night shift");
 

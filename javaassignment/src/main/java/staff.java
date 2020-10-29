@@ -104,7 +104,7 @@ class managingStaff extends staff{
         super(Fullname, ID, Password, Age, PN, Email, Position, Gender);
         this.shift = shift;
     }
-
+    public managingStaff(){}
         
 
         public String getShift() {
@@ -127,7 +127,7 @@ class deliveryStaff extends staff{
         super(Fullname, ID, Password, Age, PN, Email, Position, Gender);
         this.Assignedtransport = Assignedtransport;
     }
-
+    public deliveryStaff(){}
         
        
 
