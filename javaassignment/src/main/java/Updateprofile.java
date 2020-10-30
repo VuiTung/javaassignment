@@ -224,7 +224,7 @@ public static String username2;
                             .addComponent(password1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(password2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(paslab, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -441,11 +441,9 @@ System.out.println(ID1);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Fullname;
     private javax.swing.JButton Reset;
-    private javax.swing.JPanel Shift;
     private javax.swing.JTextField age;
     private javax.swing.JLabel ageerror;
     private java.awt.Checkbox checkbox1;
-    private javax.swing.JRadioButton day;
     private javax.swing.JTextField email;
     private javax.swing.JLabel err;
     private javax.swing.JLabel errormsg;
@@ -457,7 +455,6 @@ System.out.println(ID1);
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JRadioButton night;
     private javax.swing.JLabel paslab;
     private javax.swing.JPasswordField password1;
     private javax.swing.JPasswordField password2;
