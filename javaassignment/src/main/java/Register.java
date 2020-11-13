@@ -425,14 +425,10 @@ char pass = password1.getEchoChar();
             String password3 = new String (password2.getPassword());
             if(password.equals(password3)){
                 errormsg.setText("");
-                FileWriter file = null;
+               
                 String Position1 = String.valueOf(position.getSelectedItem());
-                try{
-                BufferedReader reader = new BufferedReader(new FileReader("assi.txt"));
-                int lines = 0;
-                while (reader.readLine() != null){ lines++;}
-                reader.close();
-            try{
+                
+            
                 String gender;
                 String shift;
                 if(Male.isSelected()){
@@ -447,53 +443,39 @@ char pass = password1.getEchoChar();
                 }else{
                     shift="day shift";
                 }
-                managingStaff std = new managingStaff(shift, Fullname.getText(), lines+1, password, Integer.parseInt(age.getText()), phonenumber.getText(), email.getText(), Position1, gender );
-            file = new FileWriter("assi.txt", true);
-            PrintWriter pw = new PrintWriter (file);
-            pw.print(std.getID()+",");
-            pw.print(std.getFullname()+",");
-            pw.print(std.getPassword()+",");
-            pw.print(std.getAge()+",");
-            pw.print(std.getGender()+",");
-            pw.print(std.getPN()+",");
-            pw.print(std.getEmail()+",");
-            pw.print(std.getPosition()+",");
-            pw.print(std.getShift());
-            pw.print("\n");
-            
-            file.close();
-            JOptionPane.showMessageDialog(rootPane, std.getPosition() + " added successfully");
+                managingStaff std = new managingStaff();
+                int IDline = std.findID();
+                std.setFullname(Fullname.getText());
+                std.setID(IDline);
+                std.setPassword(password);
+                std.setAge(Integer.parseInt(age.getText()));
+                std.setPN(phonenumber.getText());
+                std.setEmail(email.getText());
+                std.setShift(shift);
+                std.setPosition(Position1);
+                std.setGender(gender);
+                std.addmanagingstaff();
+                JOptionPane.showMessageDialog(rootPane, std.getPosition() + " added successfully");
             new menu1().setVisible(true);
             this.hide();
-                
             }else{
-                 deliveryStaff std = new deliveryStaff(transport.getText(), Fullname.getText(), lines+1, password, Integer.parseInt(age.getText()), phonenumber.getText(), email.getText(), Position1, gender );
-            file = new FileWriter("assi.txt", true);
-            PrintWriter pw = new PrintWriter (file);
-            pw.print(std.getID()+",");
-            pw.print(std.getFullname()+",");
-            pw.print(std.getPassword()+",");
-            pw.print(std.getAge()+",");
-            pw.print(std.getGender()+",");
-            pw.print(std.getPN()+",");
-            pw.print(std.getEmail()+",");
-            pw.print(std.getPosition()+",");
-            pw.print(std.getAssignedtransport());
-            pw.print("\n");
-            
-            file.close();
+                 deliveryStaff std = new deliveryStaff();
+                int IDline = std.findID();
+                std.setFullname(Fullname.getText());
+                std.setID(IDline);
+                std.setPassword(password);
+                std.setAge(Integer.parseInt(age.getText()));
+                std.setPN(phonenumber.getText());
+                std.setEmail(email.getText());
+                std.setAssignedtransport(transport.getText());
+                std.setPosition(Position1);
+                std.setGender(gender);
+                 std.adddeliverystaff();
             JOptionPane.showMessageDialog(rootPane, std.getPosition() + " added successfully");
             new menu1().setVisible(true);
             this.hide();
             }
-            }
-            catch (IOException ex){
-                JOptionPane.showMessageDialog(rootPane, ex.toString());
-            }
-                }
-                catch(IOException es){
-                    JOptionPane.showMessageDialog(rootPane, es.toString());
-        }
+            
             }else{
             errormsg.setText("make sure your password are the same");
             }

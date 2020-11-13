@@ -1,3 +1,11 @@
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,14 +17,14 @@
  * @author user
  */
 public class staff {
-    private String Fullname;
-    private int ID;
-    private String Password;
-    private int Age;
-    private String PN;
-    private String Email;
-    private String Position;
-    private String Gender;
+    protected String Fullname;
+    protected int ID;
+    protected String Password;
+    protected int Age;
+    protected String PN;
+    protected String Email;
+    protected String Position;
+    protected String Gender;
     public staff(){}
     public staff(String Fullname, int ID, String Password, int Age, String PN, String Email, String Position, String Gender) {
         this.Fullname = Fullname;
@@ -92,6 +100,21 @@ public class staff {
     public void setPosition(String Position) {
         this.Position = Position;
     }
+    
+    public int findID(){
+         FileWriter file = null;
+        try{
+         BufferedReader reader = new BufferedReader(new FileReader("assi.txt"));
+                int lines = 0;
+                while (reader.readLine() != null){ lines++;}
+                reader.close();
+                return lines;
+                }
+             catch(IOException es){
+                System.out.println(es.toString());  
+                return 22;
+        }
+    }
 }
 class managingStaff extends staff{
         private String shift;
@@ -114,7 +137,28 @@ class managingStaff extends staff{
         public void setShift(String shift) {
             this.shift = shift;
         }
-        
+        public void addmanagingstaff(){
+            FileWriter file = null;
+            try{
+                 file = new FileWriter("assi.txt", true);
+            PrintWriter pw = new PrintWriter (file);
+            pw.print(this.ID+",");
+            pw.print(this.Fullname+",");
+            pw.print(this.Password+",");
+            pw.print(this.Age+",");
+            pw.print(this.Gender+",");
+            pw.print(this.PN+",");
+            pw.print(this.Email+",");
+            pw.print(this.Position+",");
+            pw.print(this.shift);
+            pw.print("\n");
+            file.close();
+            System.out.println("success");
+            }
+                catch(IOException es){
+                    System.out.println(es.toString());
+        }
+        }
     }
 class deliveryStaff extends staff{
         private String Assignedtransport;
@@ -138,7 +182,28 @@ class deliveryStaff extends staff{
         public void setAssignedtransport(String Assignedtransport) {
             this.Assignedtransport = Assignedtransport;
         }
-        
+        public void adddeliverystaff(){
+            FileWriter file = null;
+            try{
+                 file = new FileWriter("assi.txt", true);
+            PrintWriter pw = new PrintWriter (file);
+            pw.print(this.ID+",");
+            pw.print(this.Fullname+",");
+            pw.print(this.Password+",");
+            pw.print(this.Age+",");
+            pw.print(this.Gender+",");
+            pw.print(this.PN+",");
+            pw.print(this.Email+",");
+            pw.print(this.Position+",");
+            pw.print(this.Assignedtransport);
+            pw.print("\n");
+            file.close();
+            System.out.println("success");
+            }
+                catch(IOException es){
+                    System.out.println(es.toString());
+        }
+        }
     }
 
   
