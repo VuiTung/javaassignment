@@ -1,9 +1,13 @@
 
+
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /*
@@ -101,7 +105,7 @@ public class staff {
         this.Position = Position;
     }
     
-    public int findID(){
+    public int generateID(){
          FileWriter file = null;
         try{
          BufferedReader reader = new BufferedReader(new FileReader("assi.txt"));
@@ -115,6 +119,57 @@ public class staff {
                 return 22;
         }
     }
+    private static Scanner sc;
+    public void updateprofile(){
+            FileWriter fw=null;
+            String tempfile="Tempfile.txt";
+     String filepath="assi.txt";
+        File oldfile= new File(filepath);   
+        File newfile= new File(tempfile);   
+        String gen=""; String ID1=""; String user=""; String pas =""; String age1 = ""; String pn =""; String mail=""; String rol="";String shift=""; 
+        try{
+            fw= new FileWriter(tempfile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            sc = new Scanner(new File(filepath)) ;
+            
+               String temp;
+            while(sc.hasNext()){
+            temp=sc.nextLine();
+            String []tempArr = temp.split(",");  
+                ID1=tempArr[0];
+                user=tempArr[1];
+                pas =tempArr[2];
+                age1=tempArr[3];
+                gen=tempArr[4];
+                pn=tempArr[5];
+                mail=tempArr[6];
+                rol=tempArr[7];
+                shift=tempArr[8];
+             if(ID1.equals(Integer.toString(this.ID))){
+                 pw.println(this.ID + "," + this.Fullname + "," + this.Password + "," + + this.Age + "," +gen + "," + this.PN + "," + this.Email + "," + rol + "," + shift);
+             
+             }
+             else{  
+                 pw.println(ID1 + "," + user + "," + pas + "," + age1 + "," + gen + "," + pn + "," + mail + "," + rol + "," + shift);
+               
+             }
+             
+            }
+           
+            sc.close();
+            pw.flush();
+            pw.close();
+            oldfile.delete();
+            File dump = new File(filepath);
+            newfile.renameTo(dump);
+            System.out.println("success");
+        }
+        catch(Exception e){
+            System.out.println("Error" + e);
+
+        }
+        }
 }
 class managingStaff extends staff{
         private String shift;
@@ -159,6 +214,7 @@ class managingStaff extends staff{
                     System.out.println(es.toString());
         }
         }
+        
     }
 class deliveryStaff extends staff{
         private String Assignedtransport;
@@ -204,6 +260,7 @@ class deliveryStaff extends staff{
                     System.out.println(es.toString());
         }
         }
+        
     }
 
   

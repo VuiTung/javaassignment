@@ -306,7 +306,7 @@ char pass = password1.getEchoChar();
           evt.consume();
       } 
     }//GEN-LAST:event_ageKeyTyped
-private static Scanner sc;
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     if(checkEmpty()==false){
         errormsg.setText("");
@@ -314,55 +314,11 @@ private static Scanner sc;
             String password3 = new String (password2.getPassword());
         if(password.equals(password3)){
             errormsg.setText("");
-            managingStaff std = new managingStaff(null, Fullname.getText(), Integer.parseInt(id2), password, Integer.parseInt(age.getText()), phonenumber.getText(), email.getText(), null, null);
-            FileWriter fw=null;
-            String tempfile="Tempfile.txt";
-     String filepath="assi.txt";
-        File oldfile= new File(filepath);   
-        File newfile= new File(tempfile);   
-        String gen=""; String ID1=""; String user=""; String pas =""; String age1 = ""; String pn =""; String mail=""; String rol="";String shift=""; 
-        try{
-            fw= new FileWriter(tempfile, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter pw = new PrintWriter(bw);
-            sc = new Scanner(new File(filepath)) ;
-            
-               String temp;
-            while(sc.hasNext()){
-            temp=sc.nextLine();
-            String []tempArr = temp.split(",");  
-                ID1=tempArr[0];
-                user=tempArr[1];
-                pas =tempArr[2];
-                age1=tempArr[3];
-                gen=tempArr[4];
-                pn=tempArr[5];
-                mail=tempArr[6];
-                rol=tempArr[7];
-                shift=tempArr[8];
-             if(ID1.equals(id2)){
-                 pw.println(id2 + "," + std.getFullname() + "," + std.getPassword() + "," + + std.getAge() + "," +gen + "," + std.getPN() + "," + std.getEmail() + "," + rol + "," + shift);
-             }
-             else{  
-                 pw.println(ID1 + "," + user + "," + pas + "," + age1 + "," + gen + "," + pn + "," + mail + "," + rol + "," + shift);
-             }
-             
-            }
-           
-            sc.close();
-            pw.flush();
-            pw.close();
-            oldfile.delete();
-            File dump = new File(filepath);
-            newfile.renameTo(dump);
+            staff std = new staff(Fullname.getText(), Integer.parseInt(id2), password, Integer.parseInt(age.getText()), phonenumber.getText(), email.getText(), null, null);
+            std.updateprofile();
             JOptionPane.showMessageDialog(rootPane, "profile updated successfully");
             new menu1().setVisible(true);
             this.hide();
-        }
-        catch(Exception e){
-            System.out.println("Error");
-System.out.println(ID1);
-        }
     }else{
         errormsg.setText("make sure your password are same");
     }

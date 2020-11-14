@@ -132,42 +132,19 @@ public class menu1 extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
-    private static Scanner sc;
+
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       try{
-       File file1 = new File ("assi.txt");
-        sc = new Scanner(file1);
-       String temp;
-       boolean found =false;
-        while(sc.hasNext()&& !found){
-            temp=sc.nextLine();
-            String []tempArr = temp.split(",");            
-            if(name.equals(tempArr[1])){
-                int id = Integer.parseInt(tempArr[0]);
-                int age = Integer.parseInt(tempArr[3]);
-                String PN = tempArr[5];
-                String email = tempArr[6];
-                String password = tempArr[2];
-                found = true;
-                String update[] = new String[20];
-               update[0]=name;
-               update[1]=Integer.toString(id);
-               update[2]=Integer.toString(age);
-               update[3]=PN;
-               update[4]=email;
-               update[5]=password;
+       Fileoperator std =new Fileoperator();
+       String[] array = std.returnuserdetail(name);
+       String update[] = new String[20];
+               update[0]=array[0];
+               update[1]=array[1];
+               update[2]=array[2];
+               update[3]=array[3];
+               update[4]=array[4];
+               update[5]=array[5];
                Updateprofile.main(update);
            this.setVisible(false); 
-           
-       
-            }
-            }
-        
-       }catch (FileNotFoundException ex){
-           ex.toString();
-       }finally{
-            sc.close();
-        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**

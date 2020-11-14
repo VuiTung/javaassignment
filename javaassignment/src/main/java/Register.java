@@ -444,7 +444,7 @@ char pass = password1.getEchoChar();
                     shift="day shift";
                 }
                 managingStaff std = new managingStaff();
-                int IDline = std.findID();
+                int IDline = std.generateID();
                 std.setFullname(Fullname.getText());
                 std.setID(IDline);
                 std.setPassword(password);
@@ -460,7 +460,7 @@ char pass = password1.getEchoChar();
             this.hide();
             }else{
                  deliveryStaff std = new deliveryStaff();
-                int IDline = std.findID();
+                int IDline = std.generateID();
                 std.setFullname(Fullname.getText());
                 std.setID(IDline);
                 std.setPassword(password);
