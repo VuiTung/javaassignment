@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,7 +15,7 @@ import java.util.Scanner;
  * @author user
  */
 public class menuDelivery extends javax.swing.JFrame {
-        String name="Lean Yi Jun";
+        public static String name;
 
     /**
      * Creates new form menuDelivery
@@ -126,7 +127,7 @@ public class menuDelivery extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(menuDelivery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        name = args[0];
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

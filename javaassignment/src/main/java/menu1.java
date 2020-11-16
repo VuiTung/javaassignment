@@ -14,7 +14,7 @@ import java.util.Scanner;
  * @author user
  */
 public class menu1 extends javax.swing.JFrame {
-    String name="Liong Vui Tung";
+    public static String name;
     /**
      * Creates new form menu1
      */
@@ -126,7 +126,8 @@ public class menu1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+                new ManageUser().setVisible(true);
+            this.setVisible(false);     // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -173,7 +174,7 @@ public class menu1 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(menu1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-    
+    name = args[0];
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

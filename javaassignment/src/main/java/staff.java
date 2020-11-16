@@ -3,12 +3,12 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -112,13 +112,63 @@ public class staff {
                 int lines = 0;
                 while (reader.readLine() != null){ lines++;}
                 reader.close();
-                return lines;
+                return lines + 1;
                 }
              catch(IOException es){
                 System.out.println(es.toString());  
                 return 22;
         }
     }
+    public String[] verifylogin(String position, String username1, String password1){
+            
+        String[] returnstring = null;
+        
+        try{
+        File file1 = new File ("assi.txt");
+        sc = new Scanner(file1);
+        String temp;
+        String Role = String.valueOf(position);
+        boolean found =false;
+        while(sc.hasNext()&& !found){
+            temp=sc.nextLine();
+            String []tempArr = temp.split(",");            
+            if(username1.equals(tempArr[1]) && password1.equals(tempArr[2]) && Role.equals(tempArr[7])){
+                found =true;
+               if (Role=="Delivery staff"){
+                   
+               returnstring = new String[]{"Login Successful","Delivery staff",tempArr[0],tempArr[1],tempArr[2]};
+                  
+               } 
+                    else 
+                    {
+                    returnstring = new String[]{"Login Successful","Managing staff",tempArr[0],tempArr[1],tempArr[2]};
+
+                    
+                    }
+               
+               }
+            }
+                
+        
+        
+        if (found == false){
+                    
+        returnstring=new String[]{
+         "Username and Password not found."   
+        };
+        }
+        }
+        catch(FileNotFoundException ex){
+            ex.toString();
+          // TODO add your handling code here:
+    }
+        finally{
+             sc.close();
+        }
+        return returnstring;
+    }
+    
+    
     private static Scanner sc;
     public void updateprofile(){
             FileWriter fw=null;
