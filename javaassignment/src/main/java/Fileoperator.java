@@ -1,6 +1,9 @@
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /*
@@ -45,4 +48,21 @@ public class Fileoperator {
         }
         return Userdetail;
     }
+    
+
+   public static void main(String args[]) throws Exception {
+      Scanner sc = new Scanner(new BufferedReader(new FileReader("assi.txt")));
+      int rows = sc.nextInt();
+      int columns = sc.nextInt();
+      int matrix[][] = new int[rows][columns];
+        while (sc.hasNextInt()) {
+                int row = sc.nextInt();
+                int col = sc.nextInt(); // If this fails the text documnet is incorrect.
+                matrix[row][col] = 1;
+            }
+            
+      sc.close();
+      System.out.println(Arrays.deepToString(matrix));
+   }
+    
 }

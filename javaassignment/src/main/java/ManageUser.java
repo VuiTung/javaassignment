@@ -121,25 +121,19 @@ public class ManageUser extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private static Scanner sc5;
 private void defaul(){
         try{
-       
    String[] columnNames ={"ID","Username","Age","Gender","Phone Number", "Email", "Role", "Position"};
         //set model to the jtable
         File fillname = new File("assi.txt");
         model =(DefaultTableModel)display.getModel();
         model.setRowCount(0);//clear the model
         display.revalidate();//refresh the table
-
-        
         // read eachline from the file and store as array
-        
-        
         sc5 = new Scanner(fillname);
         String temp;
-       
-        
         while(sc5.hasNext()){
             temp=sc5.nextLine();
             String []tempArr = temp.split(",");   
@@ -153,24 +147,20 @@ private void defaul(){
             Arra[6]=tempArr[7];
             Arra[7]=tempArr[8];
             System.out.println(tempArr[0]+tempArr[1]+tempArr[3]+tempArr[4]+tempArr[5]);
-          if((tempArr[7].equals("Managing staff")) || tempArr[7].equals("Delivery staff")){
-        
-            
-            model.addRow(Arra);//add a row to the table model
-          
+          if((tempArr[7].equals("Managing staff")) || tempArr[7].equals("Delivery staff")){  
+            model.addRow(Arra);//add a row to the table model    
         }
-         
-
         //display column headers
-        
-        model.setColumnIdentifiers(columnNames);
-        
+  model.setColumnIdentifiers(columnNames);
+  
         }
 }
         catch(FileNotFoundException ex){
             System.out.println("error1="+ex);
-        }finally{
-        sc5.close();}
+        }finally
+        {
+        sc5.close();
+        }
     }
 
 private static Scanner sc2;
@@ -239,12 +229,32 @@ try{
     }//GEN-LAST:event_Text1ActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-
+    
+        
+            if(display.getSelectionModel().isSelectionEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Please select a user");
+    }
+            else{
+            Fileoperator std =new Fileoperator();
+        int row = display.getSelectedRow();
+       String[] array = std.returnuserdetail(display.getModel().getValueAt(row,1).toString());
+       String update[] = new String[20];
+               update[0]=array[0];
+               update[1]=array[1];
+               update[2]=array[2];
+               update[3]=array[3];
+               update[4]=array[4];
+               update[5]=array[5];
+               update[6]=array[6];
+               
+               updateuser.main(update);
+           this.setVisible(false); 
+                    }
+        
     }//GEN-LAST:event_updateActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
 
-   
         try
         {
             int row = display.getSelectedRow();
@@ -255,12 +265,14 @@ try{
             Text1.setText("");
 
             String filepath = "assi.txt";
-            deletestaff(id, filepath);
+            managingStaff std = new managingStaff();
+            std.deleteuser(id, filepath);
 
             JOptionPane.showMessageDialog(rootPane, "Delete successfully");
             new menu1().setVisible(true);
             this.hide();
         }
+        
         catch(Exception e3)
         {
             JOptionPane.showMessageDialog(rootPane, "Please select a user");
@@ -269,58 +281,6 @@ try{
 
 
 /////////////////////////////////
-        private static Scanner sc;
-    public static void deletestaff(String id, String filepath)
-    {
-        String tempfile="Tempfile.txt";
-        File oldfile= new File(filepath);   
-        File newfile= new File(tempfile);   
-         String ID1=""; String user=""; String pas =""; String age1 = ""; String gen1=""; String pn =""; String mail=""; String rol="";String pos="";
-        try{
-            FileWriter fw= new FileWriter(tempfile, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter pw = new PrintWriter(bw);
-            sc = new Scanner(new File(filepath)) ;
-            
-               String temp;
-            while(sc.hasNext())
-            {
-                temp=sc.nextLine();
-                String []tempArr = temp.split(",");  
-                ID1=tempArr[0];
-                user=tempArr[1];
-                pas =tempArr[2];
-                age1=tempArr[3];
-                gen1=tempArr[4];
-                pn=tempArr[5];
-                mail=tempArr[6];
-                rol=tempArr[7];
-                pos=tempArr[8];
-             if(ID1.equals(id))
-             {
-              
-             }
-                else
-                {  
-                    pw.println(ID1 + "," + user + "," + pas + "," + age1 + "," + gen1 + "," + pn + "," + mail + "," + rol + "," + pos);
-                }
-             
-            }
-           
-            sc.close();
-            pw.flush();
-            pw.close();
-           
-          
-            oldfile.delete();
-            File dump = new File(filepath);
-            newfile.renameTo(dump);
-        }
-        catch(Exception e)
-        {
-            System.out.println("Error");
-        }
-    }
         public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -352,7 +312,7 @@ try{
             }
         });
     }
-    
+          
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Text1;
     private javax.swing.JButton delete;

@@ -131,19 +131,15 @@ public class staff {
         boolean found =false;
         while(sc.hasNext()&& !found){
             temp=sc.nextLine();
-            String []tempArr = temp.split(",");            
+            String []tempArr = temp.split(",");
             if(username1.equals(tempArr[1]) && password1.equals(tempArr[2]) && Role.equals(tempArr[7])){
                 found =true;
                if (Role=="Delivery staff"){
-                   
                returnstring = new String[]{"Login Successful","Delivery staff",tempArr[0],tempArr[1],tempArr[2]};
-                  
-               } 
+               }
                     else 
                     {
                     returnstring = new String[]{"Login Successful","Managing staff",tempArr[0],tempArr[1],tempArr[2]};
-
-                    
                     }
                
                }
@@ -207,7 +203,7 @@ public class staff {
              
             }
            
-            sc.close();
+            
             pw.flush();
             pw.close();
             oldfile.delete();
@@ -219,6 +215,9 @@ public class staff {
             System.out.println("Error" + e);
 
         }
+        finally{
+        sc.close();
+    }
         }
 }
 class managingStaff extends staff{
@@ -265,6 +264,66 @@ class managingStaff extends staff{
         }
         }
         
+        private static Scanner sc;
+        public void deleteuser(String id, String filepath){
+            
+        String tempfile="Tempfile.txt";
+        File oldfile= new File(filepath);   
+        File newfile= new File(tempfile);   
+         String ID1=""; String user=""; String pas =""; String age1 = ""; String gen1=""; String pn =""; String mail=""; String rol="";String pos="";
+        try{
+            FileWriter fw= new FileWriter(tempfile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            sc = new Scanner(new File(filepath)) ;
+            
+               String temp;
+            while(sc.hasNext())
+            {
+                temp=sc.nextLine();
+                String []tempArr = temp.split(",");  
+                ID1=tempArr[0];
+                user=tempArr[1];
+                pas =tempArr[2];
+                age1=tempArr[3];
+                gen1=tempArr[4];
+                pn=tempArr[5];
+                mail=tempArr[6];
+                rol=tempArr[7];
+                pos=tempArr[8];
+             if(ID1.equals(id))
+             {
+              
+             }
+                else
+                {  
+                    pw.println(ID1 + "," + user + "," + pas + "," + age1 + "," + gen1 + "," + pn + "," + mail + "," + rol + "," + pos);
+                }
+             
+            }
+           
+            
+            pw.flush();
+            pw.close();
+           
+          
+            
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error");
+        }
+            finally
+        {
+            sc.close();
+            
+            oldfile.delete();
+            File dump = new File(filepath);
+            newfile.renameTo(dump);
+        }
+            
+            
+        } 
     }
 class deliveryStaff extends staff{
         private String Assignedtransport;
