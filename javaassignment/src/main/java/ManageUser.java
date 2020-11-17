@@ -4,7 +4,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -23,7 +25,7 @@ public class ManageUser extends javax.swing.JFrame {
  DefaultTableModel model;
 
 
-    public ManageUser() {
+    public ManageUser(){
         initComponents();
         setVisible(true);
         setResizable(false);
@@ -122,47 +124,37 @@ public class ManageUser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private static Scanner sc5;
+
 private void defaul(){
-        try{
-   String[] columnNames ={"ID","Username","Age","Gender","Phone Number", "Email", "Role", "Position"};
-        //set model to the jtable
-        File fillname = new File("assi.txt");
+    String[] columnNames ={"ID","Username","Age","Gender","Phone Number", "Email", "Role", "Position"};
         model =(DefaultTableModel)display.getModel();
         model.setRowCount(0);//clear the model
-        display.revalidate();//refresh the table
-        // read eachline from the file and store as array
-        sc5 = new Scanner(fillname);
-        String temp;
-        while(sc5.hasNext()){
-            temp=sc5.nextLine();
-            String []tempArr = temp.split(",");   
-            String []Arra = new String[8];
-            Arra[0]=tempArr[0];
-            Arra[1]=tempArr[1];
-            Arra[2]=tempArr[3];
-            Arra[3]=tempArr[4];
-            Arra[4]=tempArr[5];
-            Arra[5]=tempArr[6];
-            Arra[6]=tempArr[7];
-            Arra[7]=tempArr[8];
-            System.out.println(tempArr[0]+tempArr[1]+tempArr[3]+tempArr[4]+tempArr[5]);
-          if((tempArr[7].equals("Managing staff")) || tempArr[7].equals("Delivery staff")){  
-            model.addRow(Arra);//add a row to the table model    
-        }
-        //display column headers
-  model.setColumnIdentifiers(columnNames);
-  
-        }
-}
-        catch(FileNotFoundException ex){
-            System.out.println("error1="+ex);
-        }finally
-        {
-        sc5.close();
-        }
-    }
+        display.revalidate();
+        //function here
+        Fileoperator std =new Fileoperator();
+        String[][] A =std.returnuserlist();
+        int lines = Integer.parseInt(A[0][0]);
 
+
+
+        int i =1;
+        while(i<lines+1){
+            String []Arra = new String[8];
+            Arra[0]=A[0][i];
+            Arra[1]=A[1][i];
+            Arra[2]=A[3][i];
+            Arra[3]=A[4][i];
+            Arra[4]=A[5][i];
+            Arra[5]=A[6][i];
+            Arra[6]=A[7][i];
+            Arra[7]=A[8][i];
+            model.addRow(Arra);
+            model.setColumnIdentifiers(columnNames);
+            i++;
+        }
+        
+    }
+ 
 private static Scanner sc2;
     private void Text1KeyReleased(java.awt.event.KeyEvent evt) {                                  
 try{
@@ -173,7 +165,7 @@ try{
         model =(DefaultTableModel)display.getModel();
         model.setRowCount(0);//clear the model
         display.revalidate();//refresh the table
-
+        
         
         // read eachline from the file and store as array
         

@@ -3,7 +3,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Arrays;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 /*
@@ -48,21 +51,53 @@ public class Fileoperator {
         }
         return Userdetail;
     }
-    
 
-   public static void main(String args[]) throws Exception {
-      Scanner sc = new Scanner(new BufferedReader(new FileReader("assi.txt")));
-      int rows = sc.nextInt();
-      int columns = sc.nextInt();
-      int matrix[][] = new int[rows][columns];
-        while (sc.hasNextInt()) {
-                int row = sc.nextInt();
-                int col = sc.nextInt(); // If this fails the text documnet is incorrect.
-                matrix[row][col] = 1;
-            }
-            
-      sc.close();
-      System.out.println(Arrays.deepToString(matrix));
+    public String[][] returnuserlist() {
+        long row =0;
+        Path path = Paths.get("assi.txt");
+        try {
+
+          // much slower, this task better with sequence access
+          //lines = Files.lines(path).parallel().count();
+
+          row = Files.lines(path).count();
+          
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
+        int lines =(int)row;
+        System.out.println(lines);
+          String[][] Userlist = new String[9][lines+1];
+          Userlist[0][0] = Integer.toString(lines); 
+           try {
+          BufferedReader in = new BufferedReader(new FileReader("assi.txt"));
+
+    String line;
+    int x = 1;
+    int y = 0;
+    while ((line = in.readLine()) != null)  //file reading
+    {
+       String[] values = line.split(",");
+       y=0;
+       for (String str : values){   
+           Userlist[y][x] = str; 
+
+           y += 1; 
+       }
+
+       x += 1;
+
+    }
+    in.close();
+} catch (IOException e) {
+          e.printStackTrace();
+      }
+
+        return Userlist;
+    }
+
+   public static void main(String args[]){
+
    }
     
 }
