@@ -66,7 +66,7 @@ public class Fileoperator {
           e.printStackTrace();
       }
         int lines =(int)row;
-        System.out.println(lines);
+      
           String[][] Userlist = new String[9][lines+1];
           Userlist[0][0] = Integer.toString(lines); 
            try {
@@ -97,9 +97,11 @@ public class Fileoperator {
     }
     
 
+
    public static void main(String args[]){
 
    }
+
  
    
 }

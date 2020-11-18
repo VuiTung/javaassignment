@@ -236,24 +236,25 @@ private void defaul(){
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void Text1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Text1KeyReleased
-      
-   String[] columnNames ={"ID","Username","Age","Gender","Phone Number", "Email", "Role", "Position"};
-        //set model to the jtable
-        File fillname = new File("assi.txt");
+
+        
+         String[] columnNames ={"ID","Username","Age","Gender","Phone Number", "Email", "Role", "Position"};
         model =(DefaultTableModel)display.getModel();
         model.setRowCount(0);//clear the model
-        display.revalidate();//refresh the table
-        // read eachline from the file and store as array
-                Fileoperator std =new Fileoperator();
+        display.revalidate();
+        //function here
+        Fileoperator std =new Fileoperator();
+
         String[][] A =std.returnuserlist();
         int lines = Integer.parseInt(A[0][0]);
 
 
 
         int i =1;
-        while(i<lines+1)
-        {
-            String []Arra = new String[8];  
+
+        while(i<lines+1){
+            String []Arra = new String[8];
+
             Arra[0]=A[0][i];
             Arra[1]=A[1][i];
             Arra[2]=A[3][i];
@@ -262,18 +263,21 @@ private void defaul(){
             Arra[5]=A[6][i];
             Arra[6]=A[7][i];
             Arra[7]=A[8][i];
-            model.addRow(Arra);
-          if(("Managing staff".equals(Arra[7]) || "Delivery staff".equals(Arra[7])) && (Arra[1].toLowerCase().contains(Text1.getText().toLowerCase())  || Arra[0].toLowerCase().contains(Text1.getText().toLowerCase())))
-            {
+
+               if(Arra[0].toLowerCase().contains(Text1.getText().toLowerCase())||Arra[1].toLowerCase().contains(Text1.getText().toLowerCase())){
+
             model.addRow(Arra);//add a row to the table mode
             }
-        model.setColumnIdentifiers(columnNames);
-        
+
+            model.setColumnIdentifiers(columnNames);
+            i++;
         }
+        
+
     }//GEN-LAST:event_Text1KeyReleased
 
 
-/////////////////////////////////
+
         public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
