@@ -3,6 +3,7 @@ public class report {
     private int ID;
     private String title;
     private String content;
+
     
     public report(){}
     public report(int ID, String title, String content) {
@@ -33,5 +34,8 @@ public class report {
     public void setContent(String content) {
         this.content = content;
     }
-    
+     public String toString(){
+         return (ID+","+title+","+content);
+     }
+
 }

@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 public class reportpage extends javax.swing.JFrame {
 public static String name;
 public static String id;
@@ -42,8 +45,6 @@ public static String id;
 
         jButton1.setText("Back");
 
-        errormsg.setText("jLabel4");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -51,7 +52,6 @@ public static String id;
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
@@ -65,15 +65,18 @@ public static String id;
                             .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addGap(513, 513, 513))))
+                                .addGap(513, 513, 513)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(72, 72, 72)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(185, 185, 185)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(errormsg)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(submit)
-                                .addGap(167, 167, 167)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(189, 189, 189)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(errormsg, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -87,15 +90,15 @@ public static String id;
                 .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(errormsg)
-                .addGap(7, 7, 7)
+                .addComponent(errormsg, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(submit)
-                    .addComponent(jButton1))
-                .addContainerGap(44, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addComponent(submit))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -108,9 +111,15 @@ if(checkEmpty()==true)
     }
 else{
         errormsg.setText("");
-        report std = new report();
-        std.settitle(title.getText());
-        std.setcontent(content.getText());
+        Fileoperator std1 =new Fileoperator();
+        report std = new report(std1.generatereportID(), title.getText(), content.getText());
+        System.out.println(name + id);
+        staff std2 = new staff(name, Integer.parseInt(id), std);
+                System.out.println(std2.getFullname()+ std2.getID());
+        std2.addReport();
+        JOptionPane.showMessageDialog(rootPane, "Report submitted successfully");
+            new menuDelivery().setVisible(true);
+            this.hide();
     }
 // TODO add your handling code here:
     }//GEN-LAST:event_submitActionPerformed
@@ -151,7 +160,8 @@ else{
             java.util.logging.Logger.getLogger(reportpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        name = args[0];
+        id=args[1];
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

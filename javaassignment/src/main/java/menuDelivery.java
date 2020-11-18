@@ -116,7 +116,14 @@ public class menuDelivery extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void reportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportActionPerformed
-        new reportpage().setVisible(true);
+       Fileoperator std =new Fileoperator();
+       String[] array = std.returnuserdetail(name);
+       String update[] = new String[20];
+               update[0]=array[0];
+               update[1]=array[1];
+              
+               reportpage.main(update);
+
         this.setVisible(false); 
         // TODO add your handling code here:
     }//GEN-LAST:event_reportActionPerformed

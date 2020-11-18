@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -96,7 +97,25 @@ public class Fileoperator {
         return Userlist;
     }
     
-
+    public int generatereportID(){
+         FileWriter file = null;
+         int lines =0;
+        try{
+         BufferedReader reader = new BufferedReader(new FileReader("report.txt"));
+               String line;
+                while ((line=reader.readLine()) != null){ lines++;
+                 String[] values = line.split(",");
+                lines=Integer.parseInt(values[2]);
+                }
+                reader.close();
+                
+                }
+             catch(IOException es){
+                System.out.println(es.toString());  
+                
+        }
+        return lines + 1;
+    }
 
    public static void main(String args[]){
 

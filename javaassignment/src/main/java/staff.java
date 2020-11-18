@@ -29,6 +29,8 @@ public class staff {
     protected String Email;
     protected String Position;
     protected String Gender;
+    private report report;
+
     public staff(){}
     public staff(String Fullname, int ID, String Password, int Age, String PN, String Email, String Position, String Gender) {
         this.Fullname = Fullname;
@@ -41,6 +43,16 @@ public class staff {
         this.Gender = Gender;
     }
 
+    public staff(String Fullname, int ID, report report) {
+        this.Fullname = Fullname;
+        this.ID = ID;
+        this.report = report;
+    }
+
+
+
+    
+    
     public String getGender() {
         return Gender;
     }
@@ -219,6 +231,23 @@ public class staff {
         sc.close();
     }
         }
+            public void addReport(){
+                FileWriter file = null;
+            try{
+                System.out.println("hi");
+                 file = new FileWriter("report.txt", true);
+            PrintWriter pw = new PrintWriter (file);
+            pw.print(this.ID+",");
+            pw.print(this.Fullname+",");
+            pw.print(report);
+            pw.print("\n");
+            file.close();
+            System.out.println("success");
+            }
+                catch(IOException es){
+                    System.out.println(es.toString()+ "cibai");
+            }
+}
 }
 class managingStaff extends staff{
         private String shift;
@@ -263,7 +292,7 @@ class managingStaff extends staff{
                     System.out.println(es.toString());
         }
         }
-        
+
         private static Scanner sc;
         public void deleteuser(String id, String filepath){
             
@@ -430,4 +459,5 @@ class deliveryStaff extends staff{
         
     }
 
-  
+
+
