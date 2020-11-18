@@ -29,6 +29,8 @@ public class staff {
     protected String Email;
     protected String Position;
     protected String Gender;
+    private report report;
+
     public staff(){}
     public staff(String Fullname, int ID, String Password, int Age, String PN, String Email, String Position, String Gender) {
         this.Fullname = Fullname;
@@ -41,6 +43,12 @@ public class staff {
         this.Gender = Gender;
     }
 
+    public staff(report reportcontent) {
+        this.report = reportcontent;
+    }
+
+    
+    
     public String getGender() {
         return Gender;
     }
