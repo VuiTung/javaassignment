@@ -38,7 +38,7 @@ public class Fileoperator {
                 String PN = tempArr[5];
                 String email = tempArr[6];
                 String password = tempArr[2];
-                String Shifttransport = tempArr[7];
+                String Shifttransport = tempArr[8];
                 found = true;
                 Userdetail = new String[]{name, id, age, PN, email, password, Shifttransport};
                 }
@@ -95,9 +95,66 @@ public class Fileoperator {
 
         return Userlist;
     }
+    
+    
+    public String[] searchuser(String searchword){
+            try{
+       
+       String[] Userdetail = null;
+        //set model to the jtable
+        File fillname = new File("assi.txt");
+
+        
+        
+        // read eachline from the file and store as array
+        
+        
+       
+        String temp;
+       
+        boolean found =false;
+        while(sc.hasNext())
+        {
+            temp=sc.nextLine();
+            String []tempArr = temp.split(",");   
+            String []Arra = new String[7];
+            Arra[0]=tempArr[0];
+            Arra[1]=tempArr[1];
+            Arra[2]=tempArr[3];
+            Arra[3]=tempArr[4];
+            Arra[4]=tempArr[5];
+            Arra[5]=tempArr[6];
+            Arra[6]=tempArr[7];
+            Arra[7]=tempArr[8];
+          if(("Managing staff".equals(tempArr[7]) || "Delivery staff".equals(tempArr[7])) && (tempArr[1].toLowerCase().contains(Text1.getText().toLowerCase())  || tempArr[0].toLowerCase().contains(Text1.getText().toLowerCase())))
+            {
+         found = true;
+                Userdetail = new String[]{name, id, age, PN, email, password, Shifttransport};
+     
+            
+          
+            }
+         
+
+        //display column headers
+        
+        
+        
+        }
+}       
+        catch(FileNotFoundException ex)
+        {
+
+        }
+        finally
+        {
+            sc.close();
+        }
+} 
 
    public static void main(String args[]){
 
    }
-    
+ 
+   
 }

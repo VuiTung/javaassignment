@@ -46,6 +46,7 @@ public class ManageUser extends javax.swing.JFrame {
         Text1 = new javax.swing.JTextField();
         update = new javax.swing.JButton();
         delete = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +68,11 @@ public class ManageUser extends javax.swing.JFrame {
                 Text1ActionPerformed(evt);
             }
         });
+        Text1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Text1KeyReleased(evt);
+            }
+        });
 
         update.setText("Update");
         update.addActionListener(new java.awt.event.ActionListener() {
@@ -82,27 +88,39 @@ public class ManageUser extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("Back");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(211, 211, 211))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 795, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(377, 377, 377)
+                        .addGap(280, 280, 280)
                         .addComponent(update)
-                        .addGap(98, 98, 98)
+                        .addGap(195, 195, 195)
                         .addComponent(delete)))
                 .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(211, 211, 211))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(366, 366, 366))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,7 +135,9 @@ public class ManageUser extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(update)
                     .addComponent(delete))
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(60, 60, 60))
         );
 
         pack();
@@ -155,9 +175,68 @@ private void defaul(){
         
     }
  
+    
+    private void Text1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text1ActionPerformed
+        
+    }//GEN-LAST:event_Text1ActionPerformed
+
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+
+            if(display.getSelectionModel().isSelectionEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Please select a user");
+    }
+            else{
+            Fileoperator std =new Fileoperator();
+        int row = display.getSelectedRow();
+       String[] array = std.returnuserdetail(display.getModel().getValueAt(row,1).toString());
+       String update[] = new String[20];
+               update[0]=array[0];
+               update[1]=array[1];
+               update[2]=array[2];
+               update[3]=array[3];
+               update[4]=array[4];
+               update[5]=array[5];
+               update[6]=array[6];
+             
+               updateuser.main(update);
+           this.setVisible(false); 
+                    }
+        
+    }//GEN-LAST:event_updateActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+
+        try
+        {
+            int row = display.getSelectedRow();
+            String id =display.getModel().getValueAt(row,0).toString();
+            model =(DefaultTableModel)display.getModel();
+            model.setRowCount(0);//clear the model
+            display.revalidate();//refresh the table
+            Text1.setText("");
+
+            String filepath = "assi.txt";
+            managingStaff std = new managingStaff();
+            std.deleteuser(id, filepath);
+
+            JOptionPane.showMessageDialog(rootPane, "Delete successfully");
+            new menu1().setVisible(true);
+            this.hide();
+        }
+        
+        catch(Exception e3)
+        {
+            JOptionPane.showMessageDialog(rootPane, "Please select a user");
+        }
+    }//GEN-LAST:event_deleteActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+            new menu1().setVisible(true);
+            this.hide();         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 private static Scanner sc2;
-    private void Text1KeyReleased(java.awt.event.KeyEvent evt) {                                  
-try{
+    private void Text1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Text1KeyReleased
+        try{
        
    String[] columnNames ={"ID","Username","Age","Gender","Phone Number", "Email", "Role", "Position"};
         //set model to the jtable
@@ -210,66 +289,7 @@ try{
         {
             sc2.close();
         }
-           // TODO add your handling code here:
-    }
-    
-    
-    
-    
-    private void Text1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text1ActionPerformed
-        
-    }//GEN-LAST:event_Text1ActionPerformed
-
-    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-    
-        
-            if(display.getSelectionModel().isSelectionEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Please select a user");
-    }
-            else{
-            Fileoperator std =new Fileoperator();
-        int row = display.getSelectedRow();
-       String[] array = std.returnuserdetail(display.getModel().getValueAt(row,1).toString());
-       String update[] = new String[20];
-               update[0]=array[0];
-               update[1]=array[1];
-               update[2]=array[2];
-               update[3]=array[3];
-               update[4]=array[4];
-               update[5]=array[5];
-               update[6]=array[6];
-               
-               updateuser.main(update);
-           this.setVisible(false); 
-                    }
-        
-    }//GEN-LAST:event_updateActionPerformed
-
-    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-
-        try
-        {
-            int row = display.getSelectedRow();
-            String id =display.getModel().getValueAt(row,0).toString();
-            model =(DefaultTableModel)display.getModel();
-            model.setRowCount(0);//clear the model
-            display.revalidate();//refresh the table
-            Text1.setText("");
-
-            String filepath = "assi.txt";
-            managingStaff std = new managingStaff();
-            std.deleteuser(id, filepath);
-
-            JOptionPane.showMessageDialog(rootPane, "Delete successfully");
-            new menu1().setVisible(true);
-            this.hide();
-        }
-        
-        catch(Exception e3)
-        {
-            JOptionPane.showMessageDialog(rootPane, "Please select a user");
-        }
-    }//GEN-LAST:event_deleteActionPerformed
+    }//GEN-LAST:event_Text1KeyReleased
 
 
 /////////////////////////////////
@@ -309,6 +329,7 @@ try{
     private javax.swing.JTextField Text1;
     private javax.swing.JButton delete;
     private javax.swing.JTable display;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton update;

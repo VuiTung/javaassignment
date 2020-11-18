@@ -3,18 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 /**
  *
  * @author lyjun
  */
 public class updateuser extends javax.swing.JFrame {
-
-    /**
-     * Creates new form updateuser
-     */
+    public static String username2;
+    public static String password2;
+    public static String id2;
+    public static String age2;
+    public static String email2;
+    public static String pn2;
+    public static String st2;
     public updateuser() {
         initComponents();
+        if(st2.equals("day shift")||st2.equals("night shift"))
+        {
+            plate.setVisible(false);
+            jLabel7.setVisible(false);
+           if(st2.equals("day shift")){
+               r1.setSelected(true);
+           }
+           else{
+               r2.setSelected(true);
+           }
+        }
+        else
+        {
+            jPanel2.setVisible(false);
+        }
     }
 
     /**
@@ -26,22 +45,354 @@ public class updateuser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup5 = new javax.swing.ButtonGroup();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        name = new javax.swing.JTextField();
+        age = new javax.swing.JTextField();
+        pn = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        plate = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        err = new javax.swing.JLabel();
+        ageerror = new javax.swing.JLabel();
+        view = new javax.swing.JCheckBox();
+        password = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        r1 = new javax.swing.JRadioButton();
+        r2 = new javax.swing.JRadioButton();
+        jLabel6 = new javax.swing.JLabel();
+        errormsg = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Full Name:");
+
+        jLabel2.setText("Password:");
+
+        jLabel3.setText("Age:");
+
+        jLabel4.setText("Phone Number:");
+
+        jLabel5.setText("Email");
+
+        jLabel7.setText("Transport plate:");
+
+        name.setText(username2);
+        name.setEditable(false);
+        name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameActionPerformed(evt);
+            }
+        });
+
+        age.setText(age2);
+
+        pn.setText(pn2);
+        pn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pnActionPerformed(evt);
+            }
+        });
+
+        email.setText(email2);
+
+        plate.setText(st2);
+
+        jLabel9.setText("Update User Info");
+
+        view.setText("View");
+
+        password.setText(password2);
+        password.setEditable(false);
+        password.setEditable(false);
+
+        jButton1.setText("Reset");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Back");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Submit");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup5.add(r1);
+        r1.setText("day shift");
+
+        buttonGroup5.add(r2);
+        r2.setText("night shift");
+
+        jLabel6.setText("Shift:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(jLabel6)
+                .addGap(35, 35, 35)
+                .addComponent(r1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addComponent(r2)
+                .addGap(59, 59, 59))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(r1)
+                    .addComponent(r2))
+                .addGap(0, 3, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addGap(277, 277, 277))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(err, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                                            .addComponent(pn)
+                                            .addComponent(name)
+                                            .addComponent(ageerror, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(password)
+                                            .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(20, 20, 20)
+                                        .addComponent(view))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addGap(2, 2, 2)
+                                    .addComponent(plate, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(203, 203, 203)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(114, 114, 114)
+                                .addComponent(jButton2))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(77, 77, 77)
+                                .addComponent(jButton3)
+                                .addGap(93, 93, 93)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(errormsg, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(view)
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ageerror, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(pn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(err, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(plate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(jButton2))
+                    .addComponent(errormsg, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addComponent(jButton3)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameActionPerformed
+
+    private void pnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pnActionPerformed
+    // TODO add your handling code here:
+    }//GEN-LAST:event_pnActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    if(checkEmpty()==false){
+        errormsg.setText("");
+        String shift;
+        if(st2.equals("day shift")||st2.equals("night shift")){
+        if(r1.isSelected()){
+                    shift= "day shift";
+                }else{
+                    shift= "night shift";
+                }
+                
+            errormsg.setText("");
+            managingStaff std = new managingStaff(shift, name.getText(), Integer.parseInt(id2), password2, Integer.parseInt(age.getText()),pn.getText(), email.getText(),null, null);
+            std.updateprofile();
+            JOptionPane.showMessageDialog(rootPane, "profile updated successfully");
+            new menu1().setVisible(true);
+            this.hide();
+        }else{
+            System.out.println(plate.getText());
+            errormsg.setText("");
+            managingStaff std = new managingStaff(plate.getText(), name.getText(), Integer.parseInt(id2), password2, Integer.parseInt(age.getText()),pn.getText(), email.getText(),null, null);
+            std.updateprofile();
+            JOptionPane.showMessageDialog(rootPane, "profile updated successfully");
+            new menu1().setVisible(true);
+            this.hide();
+        }
+    }else{
+        errormsg.setText("Please complete the form");
+    }        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+            new ManageUser().setVisible(true);
+            this.hide();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        age.setText(age2);
+        
+        email.setText(email2);
+        pn.setText(pn2);
+        
+        if(st2.equals("day shift")||st2.equals("night shift"))
+        {
+           if(st2.equals("day shift")){
+               r1.setSelected(true);
+           }
+           else{
+               r2.setSelected(true);
+           }
+        }
+        else
+        {
+            plate.setText(st2);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    
+    
+    private void ageKeyTyped(java.awt.event.KeyEvent evt) 
+    {                             
+        char c = evt.getKeyChar();
+          if (!(Character.isDigit(c)|| c == KeyEvent.VK_PERIOD))
+          {
+              ageerror.setText("Please enter valid age");
+              evt.consume();
+          } else if (Character.isDigit(c))
+          {
+        ageerror.setText("");
+        
+          }
+      if(age.getText().length()==3)
+      {
+          evt.consume();
+      } 
+    }
+    
+    private void pnKeyTyped(java.awt.event.KeyEvent evt) {                                     
+      char c = evt.getKeyChar();
+          if (!(Character.isDigit(c)|| c == KeyEvent.VK_PERIOD))
+          {
+              err.setText("Please enter valid phone number");
+              evt.consume();
+          } else if (Character.isDigit(c))
+          {
+            err.setText("");
+          }
+    } 
+    private boolean checkEmpty(){
+       if(st2.equals("day shift")||st2.equals("night shift"))
+    {
+       if(age.getText().equals("")||email.getText().equals("")||pn.getText().equals(""))
+       {
+        return true;       
+       }
+        else
+       {
+           return false;
+       }
+    }
+       else
+       {
+            if(age.getText().equals("")||email.getText().equals("")||name.getText().equals("")||pn.getText().equals("")||plate.getText().equals(""))
+            {
+                return true;       
+            }
+              else
+            {
+                return false;
+            }
+       }
+   
+}
     /**
      * @param args the command line arguments
      */
@@ -68,7 +419,15 @@ public class updateuser extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(updateuser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+         managingStaff std = new managingStaff(args[6], args[0], Integer.parseInt(args[1]), args[5], Integer.parseInt(args[2]),args[3], args[4], null, null);
+        username2=std.getFullname();
+        id2=Integer.toString(std.getID());
+        age2=Integer.toString(std.getAge());
+        email2=std.getEmail();
+        pn2=std.getPN();
+        password2=std.getPassword();
+        st2=std.getShift();
+      
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -78,5 +437,30 @@ public class updateuser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField age;
+    private javax.swing.JLabel ageerror;
+    private javax.swing.ButtonGroup buttonGroup5;
+    private javax.swing.JTextField email;
+    private javax.swing.JLabel err;
+    private javax.swing.JLabel errormsg;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField name;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JTextField plate;
+    private javax.swing.JTextField pn;
+    private javax.swing.JRadioButton r1;
+    private javax.swing.JRadioButton r2;
+    private javax.swing.JCheckBox view;
     // End of variables declaration//GEN-END:variables
 }

@@ -324,6 +324,64 @@ class managingStaff extends staff{
             
             
         } 
+        
+
+    public void updateprofile(){
+            FileWriter fw=null;
+            String tempfile="Tempfile.txt";
+     String filepath="assi.txt";
+        File oldfile= new File(filepath);   
+        File newfile= new File(tempfile);   
+        String gen=""; String ID1=""; String user=""; String pas =""; String age1 = ""; String pn =""; String mail=""; String rol="";String shift=""; 
+        try{
+            fw= new FileWriter(tempfile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            sc = new Scanner(new File(filepath)) ;
+            
+               String temp;
+            while(sc.hasNext()){
+            temp=sc.nextLine();
+            String []tempArr = temp.split(",");  
+                ID1=tempArr[0];
+                user=tempArr[1];
+                pas =tempArr[2];
+                age1=tempArr[3];
+                gen=tempArr[4];
+                pn=tempArr[5];
+                mail=tempArr[6];
+                rol=tempArr[7];
+                shift=tempArr[8];
+             if(ID1.equals(Integer.toString(this.ID))){
+                 pw.println(this.ID + "," + this.Fullname + "," + this.Password + "," + + this.Age + "," +gen + "," + this.PN + "," + this.Email + "," + rol + "," + this.shift);
+             
+             }
+             else{  
+                 pw.println(ID1 + "," + user + "," + pas + "," + age1 + "," + gen + "," + pn + "," + mail + "," + rol + "," + shift);
+               
+             }
+             
+            }
+           
+            
+            pw.flush();
+            pw.close();
+            
+        }
+        catch(Exception e){
+            System.out.println("Error" + e);
+
+        }
+        finally{
+        sc.close();
+        oldfile.delete();
+            File dump = new File(filepath);
+            newfile.renameTo(dump);
+            System.out.println("success");
+    }
+        }
+        
+        
     }
 class deliveryStaff extends staff{
         private String Assignedtransport;

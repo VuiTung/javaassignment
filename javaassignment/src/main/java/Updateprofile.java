@@ -98,6 +98,11 @@ public static String username2;
         jLabel6.setText("Email");
 
         email.setText(email2);
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Phone Number");
 
@@ -340,6 +345,10 @@ char pass = password1.getEchoChar();
         new menu1().setVisible(true);
         this.hide();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
     private boolean checkEmpty(){
     String password = new String (password1.getPassword());
    String password3 = new String (password2.getPassword());
