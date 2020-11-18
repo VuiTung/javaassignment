@@ -234,60 +234,41 @@ private void defaul(){
             new menu1().setVisible(true);
             this.hide();         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-private static Scanner sc2;
+
     private void Text1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Text1KeyReleased
-        try{
-       
+      
    String[] columnNames ={"ID","Username","Age","Gender","Phone Number", "Email", "Role", "Position"};
         //set model to the jtable
         File fillname = new File("assi.txt");
         model =(DefaultTableModel)display.getModel();
         model.setRowCount(0);//clear the model
         display.revalidate();//refresh the table
-        
-        
         // read eachline from the file and store as array
-        
-        
-        sc2 = new Scanner(fillname);
-        String temp;
-       
-        
-        while(sc2.hasNext())
-        {
-            temp=sc2.nextLine();
-            String []tempArr = temp.split(",");   
-            String []Arra = new String[7];
-            Arra[0]=tempArr[0];
-            Arra[1]=tempArr[1];
-            Arra[2]=tempArr[3];
-            Arra[3]=tempArr[4];
-            Arra[4]=tempArr[5];
-            Arra[5]=tempArr[6];
-            Arra[6]=tempArr[7];
-            Arra[7]=tempArr[8];
-          if(("Managing staff".equals(tempArr[7]) || "Delivery staff".equals(tempArr[7])) && (tempArr[1].toLowerCase().contains(Text1.getText().toLowerCase())  || tempArr[0].toLowerCase().contains(Text1.getText().toLowerCase())))
-            {
-         
-     
-            model.addRow(Arra);//add a row to the table model
-          
-            }
-         
+                Fileoperator std =new Fileoperator();
+        String[][] A =std.returnuserlist();
+        int lines = Integer.parseInt(A[0][0]);
 
-        //display column headers
-        
+
+
+        int i =1;
+        while(i<lines+1)
+        {
+            String []Arra = new String[8];  
+            Arra[0]=A[0][i];
+            Arra[1]=A[1][i];
+            Arra[2]=A[3][i];
+            Arra[3]=A[4][i];
+            Arra[4]=A[5][i];
+            Arra[5]=A[6][i];
+            Arra[6]=A[7][i];
+            Arra[7]=A[8][i];
+            model.addRow(Arra);
+          if(("Managing staff".equals(Arra[7]) || "Delivery staff".equals(Arra[7])) && (Arra[1].toLowerCase().contains(Text1.getText().toLowerCase())  || Arra[0].toLowerCase().contains(Text1.getText().toLowerCase())))
+            {
+            model.addRow(Arra);//add a row to the table mode
+            }
         model.setColumnIdentifiers(columnNames);
         
-        }
-}       
-        catch(FileNotFoundException ex)
-        {
-
-        }
-        finally
-        {
-            sc2.close();
         }
     }//GEN-LAST:event_Text1KeyReleased
 
