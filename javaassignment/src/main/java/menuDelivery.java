@@ -16,7 +16,7 @@ import java.util.Scanner;
  */
 public class menuDelivery extends javax.swing.JFrame {
         public static String name;
-
+        public static String id;
     /**
      * Creates new form menuDelivery
      */
@@ -37,6 +37,7 @@ public class menuDelivery extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        report = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +55,13 @@ public class menuDelivery extends javax.swing.JFrame {
             }
         });
 
+        report.setText("Report");
+        report.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -67,13 +75,19 @@ public class menuDelivery extends javax.swing.JFrame {
                         .addComponent(jButton1))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(report)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
+                .addComponent(report)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -100,6 +114,12 @@ public class menuDelivery extends javax.swing.JFrame {
                UpdateprofileD.main(update);
            this.setVisible(false); 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void reportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportActionPerformed
+        new reportpage().setVisible(true);
+        this.setVisible(false); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reportActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,5 +160,6 @@ public class menuDelivery extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton report;
     // End of variables declaration//GEN-END:variables
 }

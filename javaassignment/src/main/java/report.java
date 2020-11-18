@@ -3,14 +3,12 @@ public class report {
     private int ID;
     private String title;
     private String content;
-    private int DeliverystaffID;
     
     public report(){}
-    public report(int ID, String title, String content, int DeliverystaffID) {
+    public report(int ID, String title, String content) {
         this.ID = ID;
         this.title = title;
         this.content = content;
-        this.DeliverystaffID = DeliverystaffID;
     }
     public int getID() {
         return ID;
@@ -35,14 +33,5 @@ public class report {
     public void setContent(String content) {
         this.content = content;
     }
-
-    public int getDeliverystaffID() {
-        return DeliverystaffID;
-    }
-
-    public void setDeliverystaffID(int DeliverystaffID) {
-        this.DeliverystaffID = DeliverystaffID;
-    }
-
-
+    
 }
