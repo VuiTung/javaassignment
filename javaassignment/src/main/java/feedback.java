@@ -51,5 +51,7 @@ public class feedback {
     }
 
     ////public String tioString(){}
-
+public String toString(){
+     return (ID+","+Title+","+Content+","+Status);
+}
 }

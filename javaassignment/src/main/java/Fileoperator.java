@@ -116,7 +116,25 @@ public class Fileoperator {
         }
         return lines + 1;
     }
-
+    public int generatefeedbackID(){
+         FileWriter file = null;
+         int lines =0;
+        try{
+         BufferedReader reader = new BufferedReader(new FileReader("feedback.txt"));
+               String line;
+                while ((line=reader.readLine()) != null){ lines++;
+                 String[] values = line.split(",");
+                lines=Integer.parseInt(values[2]);
+                }
+                reader.close();
+                
+                }
+             catch(IOException es){
+                System.out.println(es.toString());  
+                
+        }
+        return lines + 1;
+    }
    public static void main(String args[]){
 
    }
