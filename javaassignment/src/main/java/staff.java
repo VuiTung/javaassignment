@@ -247,6 +247,7 @@ public class staff {
                 catch(IOException es){
                     System.out.println(es.toString()+ "cibai");
             }
+            //////public void addfeedback(){}
 }
 }
 class managingStaff extends staff{
