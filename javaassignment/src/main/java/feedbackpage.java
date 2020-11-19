@@ -106,7 +106,7 @@ public static String id;
     {
         errormsg.setText("");
         Fileoperator std1 =new Fileoperator();
-        feedback std = new feedback(std1.generatefeedbackID(), title.getText(), content.getText(),"New");
+        feedback std = new feedback(std1.generateID(2, "feedback.txt"), title.getText(), content.getText(),"New");
         System.out.println(name + id);
         staff std2 = new staff(name, Integer.parseInt(id), std);
             System.out.println(std2.getFullname()+ std2.getID());
