@@ -97,9 +97,54 @@ public class Fileoperator {
         return Userlist;
     }
     
+        public String[][] returnfeedback() {
+        long row =0;
+        Path path = Paths.get("feedback.txt");
+        try {
+          // much slower, this task better with sequence access
+          //lines = Files.lines(path).parallel().count();
+          row = Files.lines(path).count();
+          
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
+        int lines =(int)row;
+      
+          String[][] feedbacklist = new String[6][lines+1];
+          feedbacklist[0][0] = Integer.toString(lines); 
+        try 
+           {
+            BufferedReader in = new BufferedReader(new FileReader("feedback.txt"));
+
+              String line;
+              int x = 1;
+              int y = 0;
+              while ((line = in.readLine()) != null)  //file reading
+              {
+                 String[] values = line.split(",");
+                 y=0;
+                 for (String str : values){   
+                     feedbacklist[y][x] = str; 
+
+                     y += 1; 
+                 }
+
+                 x += 1;
+
+              }
+              in.close();
+            } 
+        catch (IOException e) 
+        {
+          e.printStackTrace();
+        }
+
+        return feedbacklist;
+    }
+    
     public int generateID(int i, String filename){
-         FileWriter file = null;
-         int lines =0;
+        FileWriter file = null;
+        int lines =0;
         try{
          BufferedReader reader = new BufferedReader(new FileReader(filename));
                String line;
@@ -116,10 +161,50 @@ public class Fileoperator {
         }
         return lines + 1;
     }
- 
-   public static void main(String args[]){
+    
+    
+    
+   public boolean checkPosition(String name)
+    {
+            boolean X = false;
+            try
+        {
+            
+            File file1 = new File ("assi.txt");
+            sc = new Scanner(file1);
+            String temp;
+            boolean found =false;
+            String role =  "Delivery staff";
+            while(sc.hasNext()&& !found){
+            temp=sc.nextLine();
+            String []tempArr = temp.split(",");
+            if(name.equals(tempArr[1])){
+                found =true;
+               if (role.equals(tempArr[7])){
+               X = true;
+               }
+                    else 
+                    {
+                    X = false;
+                    }
+               
+               }
+            }
+        }
+                catch(IOException es)
+            {
+                System.out.println(es.toString());  
+            }
+            finally{
+             sc.close();
+        }
+            return X;
+    }
 
-   }
+    public static void main(String args[])
+    {
+
+    }
 
  
    

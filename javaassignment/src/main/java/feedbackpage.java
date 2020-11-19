@@ -41,6 +41,11 @@ public static String id;
         });
 
         jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,11 +102,11 @@ public static String id;
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
 
+        Fileoperator stdd = new Fileoperator();
         if(checkEmpty()==true)
         {
         errormsg.setText("Plese complete the form");
         }
-
         else
     {
         errormsg.setText("");
@@ -112,14 +117,33 @@ public static String id;
             System.out.println(std2.getFullname()+ std2.getID());
         std2.addFeedback();
         JOptionPane.showMessageDialog(rootPane, "Feedback submitted successfully");
+
+            if(stdd.checkPosition(name)==true)
+    {
             new menuDelivery().setVisible(true);
             this.hide();
     }
+            else{
+            new menu1().setVisible(true);
+            this.hide();
+            }
+}
+
     }//GEN-LAST:event_submitActionPerformed
 
-    
-    
-    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Fileoperator stdd = new Fileoperator();
+        if(stdd.checkPosition(name)==true)
+    {
+            new menuDelivery().setVisible(true);
+            this.hide();
+    }
+            else{
+            new menu1().setVisible(true);
+            this.hide();
+            }// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     
     
         private boolean checkEmpty()
@@ -131,6 +155,8 @@ public static String id;
                 return false;
             } 
         }
+        
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
