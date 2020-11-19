@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
@@ -201,11 +204,143 @@ public class Fileoperator {
             return X;
     }
 
-    public static void main(String args[])
-    {
+    public int[] autoassign(){
 
+        int lines  = 0;
+        try 
+           {
+            BufferedReader in = new BufferedReader(new FileReader("assi.txt"));
+
+              String line;
+              while ((line = in.readLine()) != null)  //file reading
+              {
+                 String[] values = line.split(",");
+
+                 if(values[7].equals("Delivery staff")){
+                     lines+=1;
+
+                 }
+              }
+              in.close();
+            } 
+        catch (IOException e) 
+        {
+          e.printStackTrace();
+        }
+
+        int[][] deliverylist = new int[2][lines];
+        try 
+           {
+            BufferedReader in = new BufferedReader(new FileReader("assi.txt"));
+
+              String line;
+              int x = 0;
+              while ((line = in.readLine()) != null)  //file reading
+              {
+                 String[] values = line.split(",");
+                 if(values[7].equals("Delivery staff")){
+                     deliverylist[0][x] = Integer.parseInt(values[0]); 
+                     deliverylist[1][x] = 0;
+                    x++;}
+              }
+              in.close();
+            } 
+        catch (IOException e) 
+        {
+          e.printStackTrace();
+        }
+
+        int days =0;
+        try 
+           {
+            
+                String line;
+               BufferedReader in=null;
+              DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+                LocalDateTime now = LocalDateTime.now(); 
+                boolean full = true;
+                
+                while(full ==true){
+                    int k =0;
+                int g =0;
+                  in=  new BufferedReader(new FileReader("delivery.txt"));
+                   
+                days+=1;
+
+                LocalDateTime tomorrow = now.plusDays(days);
+                String date = dtf.format(tomorrow);
+
+
+              while ((line = in.readLine()) != null)  //file reading
+              {
+                 String[] values = line.split(",");
+                 for(int j=0; j<lines; j++){
+                     if(Integer.parseInt(values[5])==deliverylist[0][j]&&values[1].equals(date)){
+                     deliverylist[1][j]=deliverylist[1][j] +1;
+                     
+                 }
+                     
+                }
+              }
+
+              while(k<lines && full==true){
+
+                    if(deliverylist[1][k]==5){
+                     full = true;
+                 }else{
+                      full = false;  
+                    }
+                    k+=1;
+                }
+              if(full==true){
+                  while(g<lines){
+                      deliverylist[1][g]=0;
+                      g+=1;
+                      
+                  }
+                  
+              }else{
+                   
+              }
+
+                }
+              in.close();
+            } 
+        catch (IOException e) 
+        {
+          e.printStackTrace();
+        }
+
+
+        int temp=0;  
+        for (int n = 0; n < lines; n++)   
+        {  
+            for (int m = n + 1; m < lines; m++)   
+            {  
+                if (deliverylist[1][n] > deliverylist[1][m])   
+                {  
+                     temp=deliverylist[1][m];
+                }else if(deliverylist[1][n] == deliverylist[1][m]){
+                    temp=deliverylist[1][m];
+                } 
+            }  
+        }  
+
+        ArrayList<Integer> ids = new ArrayList<Integer>();
+        
+        for(int x = 0; x < lines; x++){
+   
+
+            if(deliverylist[1][x]==temp){
+                ids.add(deliverylist[0][x]);
+            }
+        }
+
+        int trueid = ids.get(0);
+        int[] result = new int[]{trueid, days};
+        return result;
     }
-
+    
  
    
 }

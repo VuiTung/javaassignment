@@ -201,7 +201,6 @@ private void defaul(){
                updateuser.main(update);
            this.setVisible(false); 
                     }
-        
     }//GEN-LAST:event_updateActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed

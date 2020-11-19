@@ -1,5 +1,8 @@
 
 import java.awt.event.KeyEvent;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -85,6 +88,7 @@ public class registerorder extends javax.swing.JFrame {
 
         jLabel6.setText("Price");
 
+        price.setEditable(false);
         price.setToolTipText("");
 
         jLabel7.setText("RM");
@@ -106,6 +110,11 @@ public class registerorder extends javax.swing.JFrame {
         });
 
         jButton3.setText("Back");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         weighterro.setForeground(new java.awt.Color(255, 0, 51));
 
@@ -212,13 +221,33 @@ public class registerorder extends javax.swing.JFrame {
           Fileoperator std1 = new Fileoperator();
           Fileoperator std2 = new Fileoperator();
           int deliveryID = std1.generateID(0, "delivery.txt");
+
           int orderID = std2.generateID(0, "order.txt");
-          
+
+          int[] a = std2.autoassign();
+
+          int days = a[1];
+          int deliverystaffid = a[0];
+          DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+          LocalDateTime now = LocalDateTime.now(); 
+          LocalDateTime tomorrow = now.plusDays(days);
+          String today = dtf.format(now);
+          String date = dtf.format(tomorrow);  
+          order std3 = new order(orderID, sender.getText(), Double.parseDouble(Weight.getText()), today, "Undone", Double.parseDouble(price.getText()), 
+                  deliveryID, date, "Unsend", Address.getText());   
+          managingStaff std4 =new managingStaff(std3);
+          std4.RegisterOrder(deliverystaffid);
+          JOptionPane.showMessageDialog(rootPane, "order made");
+            new menu1().setVisible(true);
+            this.hide();
       }
     }//GEN-LAST:event_SubmitActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        sender.setText("");
+        Address.setText("");
+        Weight.setText("");
+        price.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void WeightKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_WeightKeyReleased
@@ -249,6 +278,12 @@ char c = evt.getKeyChar();
 
           }        // TODO add your handling code here:
     }//GEN-LAST:event_WeightKeyTyped
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+            new menu1().setVisible(true);
+            this.hide();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
         private boolean checkEmpty(){
     if(sender.getText().equals("")||Address.getText().equals("")||Weight.getText().equals("")||price.getText().equals("")){
         return true;       

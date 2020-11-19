@@ -13,11 +13,11 @@ import java.time.LocalDate;
  */
 public class delivery {
     private int ID;
-    private LocalDate AssignedDateOut;
+    private String AssignedDateOut;
     private String Status;
     private String Address;
     public delivery(){}
-    public delivery(int ID, LocalDate AssignedDateOut, String Status, String Address) {
+    public delivery(int ID, String AssignedDateOut, String Status, String Address) {
         this.ID = ID;
         this.AssignedDateOut = AssignedDateOut;
         this.Status = Status;
@@ -40,11 +40,11 @@ public class delivery {
         this.ID = ID;
     }
 
-    public LocalDate getAssignedDateOut() {
+    public String getAssignedDateOut() {
         return AssignedDateOut;
     }
 
-    public void setAssignedDateOut(LocalDate AssignedDateOut) {
+    public void setAssignedDateOut(String AssignedDateOut) {
         this.AssignedDateOut = AssignedDateOut;
     }
 
