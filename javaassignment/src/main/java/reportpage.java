@@ -112,7 +112,7 @@ if(checkEmpty()==true)
 else{
         errormsg.setText("");
         Fileoperator std1 =new Fileoperator();
-        report std = new report(std1.generatereportID(), title.getText(), content.getText());
+        report std = new report(std1.generateID(2, "report.txt"), title.getText(), content.getText());
         System.out.println(name + id);
         staff std2 = new staff(name, Integer.parseInt(id), std);
                 System.out.println(std2.getFullname()+ std2.getID());

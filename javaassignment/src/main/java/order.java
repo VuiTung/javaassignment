@@ -17,25 +17,42 @@ public class order {
     private double Weight;
     private LocalDate Datein;
     private String Status;
+    private double Price;
     private delivery delivery;
     public order(){}
-    public order(int ID, String Owner, double Weight, LocalDate Datein, String Status) {
+    public order(int ID, String Owner, double Weight, LocalDate Datein, String Status, double Price, int ID2, LocalDate AssignedDateOut, String Status2, String Address) {
         this.ID = ID;
         this.Owner = Owner;
         this.Weight = Weight;
         this.Datein = Datein;
         this.Status = Status;
-
-    }
-    public order(int ID, int ID2, LocalDate AssignedDateOut, String Status2){
         this.ID=ID;
-        this.delivery = new delivery(ID2, AssignedDateOut, Status2);
+        this.Price=Price;
+        this.delivery = new delivery(ID2, AssignedDateOut, Status2, Address);
     }
+    
     ////
     public int getID2(){
         return delivery.getID();
     }
     /////
+
+    public double getPrice() {
+        return Price;
+    }
+
+    public void setPrice(double Price) {
+        this.Price = Price;
+    }
+
+    public delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(delivery delivery) {
+        this.delivery = delivery;
+    }
+    
     public int getID() {
         return ID;
     }

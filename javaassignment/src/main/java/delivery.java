@@ -15,13 +15,23 @@ public class delivery {
     private int ID;
     private LocalDate AssignedDateOut;
     private String Status;
+    private String Address;
     public delivery(){}
-    public delivery(int ID, LocalDate AssignedDateOut, String Status) {
+    public delivery(int ID, LocalDate AssignedDateOut, String Status, String Address) {
         this.ID = ID;
         this.AssignedDateOut = AssignedDateOut;
         this.Status = Status;
+        this.Address = Address;
     }
 
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String Address) {
+        this.Address = Address;
+    }
+    
     public int getID() {
         return ID;
     }

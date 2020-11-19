@@ -97,15 +97,15 @@ public class Fileoperator {
         return Userlist;
     }
     
-    public int generatereportID(){
+    public int generateID(int i, String filename){
          FileWriter file = null;
          int lines =0;
         try{
-         BufferedReader reader = new BufferedReader(new FileReader("report.txt"));
+         BufferedReader reader = new BufferedReader(new FileReader(filename));
                String line;
                 while ((line=reader.readLine()) != null){ lines++;
                  String[] values = line.split(",");
-                lines=Integer.parseInt(values[2]);
+                lines=Integer.parseInt(values[i]);
                 }
                 reader.close();
                 
