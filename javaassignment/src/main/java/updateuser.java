@@ -419,7 +419,8 @@ public class updateuser extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(updateuser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-         managingStaff std = new managingStaff(args[6], args[0], Integer.parseInt(args[1]), args[5], Integer.parseInt(args[2]),args[3], args[4], null, null);
+        
+        managingStaff std = new managingStaff(args[6], args[0], Integer.parseInt(args[1]), args[5], Integer.parseInt(args[2]),args[3], args[4], null, null);
         username2=std.getFullname();
         id2=Integer.toString(std.getID());
         age2=Integer.toString(std.getAge());
