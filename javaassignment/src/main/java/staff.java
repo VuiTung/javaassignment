@@ -30,6 +30,7 @@ public class staff {
     protected String Position;
     protected String Gender;
     private report report;
+    private feedback feedback;
 
     public staff(){}
     public staff(String Fullname, int ID, String Password, int Age, String PN, String Email, String Position, String Gender) {
@@ -48,6 +49,12 @@ public class staff {
         this.ID = ID;
         this.report = report;
     }
+    
+   public staff(String Fullname, int ID, feedback feedback){
+       this.Fullname = Fullname;
+       this.ID = ID;
+       this.feedback = feedback;
+   }
 
 
 
@@ -231,7 +238,8 @@ public class staff {
         sc.close();
     }
         }
-            public void addReport(){
+            public void addReport()
+    {
                 FileWriter file = null;
             try{
                 System.out.println("hi");
@@ -245,10 +253,29 @@ public class staff {
             System.out.println("success");
             }
                 catch(IOException es){
-                    System.out.println(es.toString()+ "cibai");
+                    System.out.println(es.toString());
             }
             //////public void addfeedback(){}
-}
+    }
+            public void addFeedback()
+    {
+                FileWriter file = null;
+            try{
+                System.out.println("hi");
+                 file = new FileWriter("feedback.txt", true);
+                PrintWriter pw = new PrintWriter (file);
+                pw.print(this.ID+",");
+                pw.print(this.Fullname+",");
+                pw.print(feedback);
+                pw.print("\n");
+                file.close();
+                System.out.println("success");
+                }
+                    catch(IOException es){
+                        System.out.println(es.toString());
+                }
+            //////public void addfeedback(){}
+    }
 }
 class managingStaff extends staff{
         private String shift;
