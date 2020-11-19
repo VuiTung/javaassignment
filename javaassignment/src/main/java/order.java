@@ -26,7 +26,6 @@ public class order {
         this.Weight = Weight;
         this.Datein = Datein;
         this.Status = Status;
-        this.ID=ID;
         this.Price=Price;
         this.delivery = new delivery(ID2, AssignedDateOut, Status2, Address);
     }
@@ -92,6 +91,11 @@ public class order {
     public void setStatus(String Status) {
         this.Status = Status;
     }
-    
-         
+    public String toString(){
+        return (ID+ "," +Owner+ "," +Weight+"," +Datein+"," + Status+","+
+                Price);
+    }
+    public delivery getdelivery(){
+        return delivery;
+    }     
 }

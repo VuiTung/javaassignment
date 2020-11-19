@@ -255,7 +255,7 @@ public class staff {
                 catch(IOException es){
                     System.out.println(es.toString());
             }
-            //////public void addfeedback(){}
+           
     }
             public void addFeedback()
     {
@@ -276,10 +276,11 @@ public class staff {
                 }
             //////public void addfeedback(){}
     }
+               
 }
 class managingStaff extends staff{
         private String shift;
-
+        private order order;
     public managingStaff(String shift) {
         this.shift = shift;
     }
@@ -288,6 +289,10 @@ class managingStaff extends staff{
         super(Fullname, ID, Password, Age, PN, Email, Position, Gender);
         this.shift = shift;
     }
+    public managingStaff(order order){
+        this.order = order;
+    }
+    
     public managingStaff(){}
         
 
@@ -435,9 +440,35 @@ class managingStaff extends staff{
             File dump = new File(filepath);
             newfile.renameTo(dump);
             System.out.println("success");
-    }
         }
-        
+        }
+        public void RegisterOrder(int IDDe){
+             FileWriter file = null;
+            try{
+                 file = new FileWriter("order.txt", true);
+                PrintWriter pw = new PrintWriter (file);
+                pw.print(order.toString());
+                pw.print("\n");
+                file.close();
+                System.out.println("success");
+                }
+                    catch(IOException es){
+                        System.out.println(es.toString());
+                }
+            try{
+                 file = new FileWriter("delivery.txt", true);
+                PrintWriter pw = new PrintWriter (file);
+                pw.print(order.getdelivery()+",");
+                pw.print(order.getID()+",");
+                pw.print(IDDe);
+                pw.print("\n");
+                file.close();
+                System.out.println("success2");
+                }
+                    catch(IOException es){
+                        System.out.println(es.toString());
+                }
+        }
         
     }
 class deliveryStaff extends staff{

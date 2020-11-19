@@ -55,5 +55,7 @@ public class delivery {
     public void setStatus(String Status) {
         this.Status = Status;
     }
-    
+    public String toString(){
+        return(ID+","+AssignedDateOut+","+ Status+","+ Address);
+    }
 }
