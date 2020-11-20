@@ -414,5 +414,88 @@ public class Fileoperator {
     }
     
  
-   
+   public String[] returndeliverydetail(String DID){
+        String[] deliverydetail = null;
+        try{
+       File file1 = new File ("delivery.txt");
+        sc = new Scanner(file1);
+       String temp;
+       boolean found =false;
+        while(sc.hasNext()&& !found){
+            temp=sc.nextLine();
+            String []tempArr = temp.split(",");            
+            if(DID.equals(tempArr[1])){
+                String date =tempArr[0];
+                String status = tempArr[2];
+                String address = tempArr[3];
+                String orderID = tempArr[4];
+                String DstaffID = tempArr[5];
+                found = true;
+                deliverydetail = new String[]{DID, date, status, address, orderID, DstaffID};
+                }
+            }
+        
+       }catch (FileNotFoundException ex){
+           ex.toString();
+       }finally{
+            sc.close();
+        }
+        return deliverydetail;
+    }
+   public String[][] returntodaydeliverylist(String date) {
+        long row =0;
+        Path path = Paths.get("delivery.txt");
+        try {
+          // much slower, this task better with sequence access
+          //lines = Files.lines(path).parallel().count();
+          row = Files.lines(path).count();
+          
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
+        int lines =(int)row;
+      
+          String[][] deliverydetail = new String[6][lines+1];
+          
+           
+        try 
+           {
+            BufferedReader in = new BufferedReader(new FileReader("delivery.txt"));
+
+              String line;
+              int num =0;
+              int x = 1;
+              int y = 0;
+              while ((line = in.readLine()) != null)  //file reading
+              {
+                  
+                      String[] values = line.split(",");
+                 y=0;
+                 
+                 
+                 if(values[1].equals(date)){
+                      
+                 for (String str : values){   
+                     deliverydetail[y][x] = str; 
+                     
+                     y += 1; 
+                 }
+                 
+                 x += 1;
+                 num+=1;
+                  }
+              }
+              in.close();
+              deliverydetail[0][0] = Integer.toString(num);
+            } 
+        catch (IOException e) 
+        {
+         
+          e.printStackTrace();
+        }
+        
+        return deliverydetail;
+        
+                 
+    }
 }
