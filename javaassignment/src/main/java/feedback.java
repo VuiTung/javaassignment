@@ -49,6 +49,10 @@ public class feedback {
     public void setContent(String Content) {
         this.Content = Content;
     }
+    
+    public String getReply(){
+        return (feedbackreply.toString());
+    }
 
     ////public String tioString(){}
 public String toString(){
