@@ -1,4 +1,5 @@
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -13,7 +14,7 @@ public class feedbacklist extends javax.swing.JFrame {
     }
 
     private void defaul(){
-    String[] columnNames ={"Name","Title","Content","Status"};
+        String[] columnNames ={"ID","Name","Title","Content","Status"};
         model =(DefaultTableModel)display1.getModel();
         model.setRowCount(0);//clear the model
         display1.revalidate();
@@ -23,11 +24,12 @@ public class feedbacklist extends javax.swing.JFrame {
         int lines = Integer.parseInt(A[0][0]);
         int i =1;
         while(i<lines+1){
-            String []Arra = new String[4];
-            Arra[0]=A[1][i];
-            Arra[1]=A[3][i];
-            Arra[2]=A[4][i];
-            Arra[3]=A[5][i];
+            String []Arra = new String[5];
+            Arra[1]=A[1][i];
+            Arra[2]=A[3][i];
+            Arra[3]=A[4][i];
+            Arra[4]=A[5][i];
+            Arra[0]=A[2][i];
             model.addRow(Arra);
             model.setColumnIdentifiers(columnNames);
             i++;
@@ -54,9 +56,17 @@ public class feedbacklist extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Title", "Content", "Status"
+                "ID", "Name", "Title", "Content", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         display.setViewportView(display1);
 
         Text1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -68,6 +78,11 @@ public class feedbacklist extends javax.swing.JFrame {
         jLabel1.setText("Search:");
 
         jButton1.setText("Reply");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +138,7 @@ public class feedbacklist extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void Text1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Text1KeyReleased
-        String[] columnNames ={"Name","Title","Content","Status"};
+        String[] columnNames ={"ID","Name","Title","Content","Status"};
         model =(DefaultTableModel)display1.getModel();
         model.setRowCount(0);//clear the model
         display1.revalidate();
@@ -134,12 +149,13 @@ public class feedbacklist extends javax.swing.JFrame {
         int lines = Integer.parseInt(A[0][0]);
         int i =1;
         while(i<lines+1){
-            String []Arra = new String[4];
-
-            Arra[0]=A[1][i];
-            Arra[1]=A[3][i];
-            Arra[2]=A[4][i];
-            Arra[3]=A[5][i];
+            String []Arra = new String[5];
+            
+            Arra[1]=A[1][i];
+            Arra[2]=A[3][i];
+            Arra[3]=A[4][i];
+            Arra[4]=A[5][i];
+            Arra[0]=A[2][i];
                if(Arra[0].toLowerCase().contains(Text1.getText().toLowerCase())||Arra[1].toLowerCase().contains(Text1.getText().toLowerCase())||
                        Arra[3].toLowerCase().contains(Text1.getText().toLowerCase())){
             model.addRow(Arra);//add a row to the table mode
@@ -149,6 +165,28 @@ public class feedbacklist extends javax.swing.JFrame {
             i++;
         }        // TODO add your handling code here:
     }//GEN-LAST:event_Text1KeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(display1.getSelectionModel().isSelectionEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Please select a report");
+    }
+        else
+        {
+        Fileoperator std =new Fileoperator();
+        int row = display1.getSelectedRow();
+        String[] array = std.returnfeedback1(display1.getModel().getValueAt(row,0).toString());
+        String detail[] = new String[20];
+            
+            detail[0]=array[0];
+            detail[1]=array[1];
+            detail[2]=array[2];
+            detail[3]=array[3];
+            detail[4]=array[4];
+            
+        feedbackreplypage.main(detail);
+        this.setVisible(false); 
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

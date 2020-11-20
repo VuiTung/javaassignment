@@ -1,4 +1,4 @@
 3,lean,1,123213,bababab,New
 3,lean,2,gura gawr,A,New
-3,lean,3,123,qqqwewqeqw,New
-1,Liong Vui Tung,4,123,qweqeqweqwe,New
+3,lean,3,123,qqqwewqeqw,Replied
+1,Liong Vui Tung,4,123,qweqeqweqwe,Replied

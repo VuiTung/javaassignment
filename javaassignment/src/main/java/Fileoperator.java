@@ -82,7 +82,33 @@ public class Fileoperator {
         }
         return reportdetail;
     }
-
+    public String[] returnfeedback1(String id){
+        String[] reportdetail = null;
+        try{
+       File file1 = new File ("feedback.txt");
+        sc = new Scanner(file1);
+       String temp;
+       boolean found =false;
+        while(sc.hasNext()&& !found){
+            temp=sc.nextLine();
+            String []tempArr = temp.split(",");            
+            if(id.equals(tempArr[2])){
+                String name =tempArr[1];
+                String title = tempArr[3];
+                String content = tempArr[4];
+                String status = tempArr[5];
+                found = true;
+                reportdetail = new String[]{id, name, title, content, status};
+                }
+            }
+        
+       }catch (FileNotFoundException ex){
+           ex.toString();
+       }finally{
+            sc.close();
+        }
+        return reportdetail;
+    }
 
     public String[][] returnuserlist() {
         long row =0;
@@ -172,6 +198,7 @@ public class Fileoperator {
 
         return feedbacklist;
     }
+        
         public String[][] returnreport() {
         long row =0;
         Path path = Paths.get("report.txt");
@@ -551,5 +578,74 @@ public class Fileoperator {
         return deliverydetail;
         
                  
+    }
+   
+        public String[][] returnfeedbacknreply() {
+        long row =0;
+        Path path = Paths.get("feedback.txt");
+        try {
+          // much slower, this task better with sequence access
+          //lines = Files.lines(path).parallel().count();
+          row = Files.lines(path).count();
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
+        int lines =(int)row;
+          String[][] feedbacklist = new String[9][lines+1];
+        try 
+           {
+            BufferedReader in = new BufferedReader(new FileReader("feedback.txt"));
+
+              String line;
+              int x = 1;
+              int y = 0;
+              while ((line = in.readLine()) != null)  //file reading
+              {
+                 String[] values = line.split(",");
+                 y=0;
+                 for (String str : values){   
+                     feedbacklist[y][x] = str; 
+                     y += 1; 
+                 }
+                 x += 1;
+              }
+              in.close();
+            } 
+        catch (IOException e) 
+        {
+          e.printStackTrace();
+        }
+        int result=0;
+        try 
+           {
+            BufferedReader in = new BufferedReader(new FileReader("feedbackreply.txt"));
+
+              String line;
+              
+              int y = 6;
+              while ((line = in.readLine()) != null)  //file reading
+              {
+                 String[] values = line.split(",");
+                 y=0;
+                 for(int t=1; t<lines; t++)
+                 {
+                  if(values[0].equals(feedbacklist[2][t]))
+                  {
+                    for (String str : values){
+                        feedbacklist[y][t] = str; 
+                        y += 1; 
+                        result+=1;
+                    }
+                    }
+                }
+              }
+              in.close();
+            } 
+        catch (IOException e) 
+        {
+          e.printStackTrace();
+        }
+        feedbacklist[0][0] = Integer.toString(result); 
+        return feedbacklist;
     }
 }

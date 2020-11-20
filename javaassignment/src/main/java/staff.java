@@ -225,10 +225,7 @@ public class staff {
             
             pw.flush();
             pw.close();
-            oldfile.delete();
-            File dump = new File(filepath);
-            newfile.renameTo(dump);
-            System.out.println("success");
+            
         }
         catch(Exception e){
             System.out.println("Error" + e);
@@ -236,6 +233,10 @@ public class staff {
         }
         finally{
         sc.close();
+        oldfile.delete();
+            File dump = new File(filepath);
+            newfile.renameTo(dump);
+            System.out.println("success");
     }
         }
             public void addReport()
@@ -274,13 +275,18 @@ public class staff {
                     catch(IOException es){
                         System.out.println(es.toString());
                 }
+            
+                        
             //////public void addfeedback(){}
     }
+            
+
                
 }
 class managingStaff extends staff{
         private String shift;
         private order order;
+        private feedback feedback;
     public managingStaff(String shift) {
         this.shift = shift;
     }
@@ -292,7 +298,9 @@ class managingStaff extends staff{
     public managingStaff(order order){
         this.order = order;
     }
-    
+    public managingStaff(feedback feedback){
+        this.feedback =feedback;
+    }
     public managingStaff(){}
         
 
@@ -469,6 +477,72 @@ class managingStaff extends staff{
                         System.out.println(es.toString());
                 }
         }
+            public void addReply()
+        {
+            FileWriter file = null;
+            try{
+                 file = new FileWriter("feedbackreply.txt", true);
+            PrintWriter pw = new PrintWriter (file);
+            pw.print(feedback.getID()+",");
+            pw.print(feedback.getReply());
+            pw.print("\n");
+            file.close();
+            System.out.println("success");
+            }
+            catch(IOException es){
+                    System.out.println(es.toString());
+        }
+            FileWriter fw=null;
+            String tempfile="Tempfile.txt";
+         String filepath="feedback.txt";
+        File oldfile= new File(filepath);   
+        File newfile= new File(tempfile);   
+        String staffid=""; String name=""; String feedbackid=""; String title =""; String content = ""; String status ="";
+        try{
+            fw= new FileWriter(tempfile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            sc = new Scanner(new File(filepath)) ;
+            
+               String temp;
+            while(sc.hasNext()){
+            temp=sc.nextLine();
+            String []tempArr = temp.split(",");  
+                staffid=tempArr[0];
+                name=tempArr[1];
+                feedbackid =tempArr[2];
+                title=tempArr[3];
+                content=tempArr[4];
+                status=tempArr[5];
+             if(feedbackid.equals(Integer.toString(feedback.getID()))){
+                 pw.println(staffid + "," + name + "," + feedbackid + ","  + title + "," +content + "," + "Replied");
+             
+             }
+             else{  
+                 pw.println(staffid + "," + name + "," + feedbackid + ","  + title + "," +content + "," + status);
+               
+             }
+             
+            }
+
+            pw.flush();
+            pw.close();
+            
+            
+        }
+        catch(Exception e){
+            System.out.println("Error" + e);
+
+        }
+        finally{
+        sc.close();
+        oldfile.delete();
+        File dump = new File(filepath);
+            newfile.renameTo(dump);
+            System.out.println("success");
+    }
+        }
+                    
         
     }
 class deliveryStaff extends staff{
