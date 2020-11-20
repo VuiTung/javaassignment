@@ -86,7 +86,6 @@
                               <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="errormsg" min="-2" pref="148" max="-2" attributes="0"/>
                   </Group>
               </Group>

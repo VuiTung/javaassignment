@@ -291,7 +291,7 @@ public class updateuser extends javax.swing.JFrame {
                 }
                 
             errormsg.setText("");
-            managingStaff std = new managingStaff(shift, name.getText(), Integer.parseInt(id2), password2, Integer.parseInt(age.getText()),pn.getText(), email.getText(),null, null);
+            staff std = new managingStaff(shift, name.getText(), Integer.parseInt(id2), password2, Integer.parseInt(age.getText()),pn.getText(), email.getText(),null, null);
             std.updateprofile();
             JOptionPane.showMessageDialog(rootPane, "profile updated successfully");
             new menu1().setVisible(true);
@@ -299,7 +299,7 @@ public class updateuser extends javax.swing.JFrame {
         }else{
             System.out.println(plate.getText());
             errormsg.setText("");
-            managingStaff std = new managingStaff(plate.getText(), name.getText(), Integer.parseInt(id2), password2, Integer.parseInt(age.getText()),pn.getText(), email.getText(),null, null);
+            staff std = new managingStaff(plate.getText(), name.getText(), Integer.parseInt(id2), password2, Integer.parseInt(age.getText()),pn.getText(), email.getText(),null, null);
             std.updateprofile();
             JOptionPane.showMessageDialog(rootPane, "profile updated successfully");
             new menu1().setVisible(true);

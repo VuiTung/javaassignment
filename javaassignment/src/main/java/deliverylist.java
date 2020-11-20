@@ -27,6 +27,7 @@ public class deliverylist extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Delivery");
          defaul();
+         defaul2();
     }
     
     public void defaul(){
@@ -60,6 +61,37 @@ public class deliverylist extends javax.swing.JFrame {
                         i++;
         }  
     }
+    public void defaul2(){
+         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+                LocalDateTime now = LocalDateTime.now(); 
+                String date = dtf.format(now);
+                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID"};
+        model =(DefaultTableModel)display2.getModel();
+        model.setRowCount(0);//clear the model
+        display2.revalidate();
+        //function here
+        Fileoperator std =new Fileoperator();
+        String[][] A =std.returnfuturedeliverylist(date);
+        
+        int lines = Integer.parseInt(A[0][0]);
+        int i =1;
+        while(i<lines+1){
+
+            if(A[5][i].equals(ID)){
+            String []Arra = new String[5];
+            Arra[0]=A[0][i];
+            Arra[1]=A[1][i];
+            Arra[2]=A[2][i];
+            Arra[3]=A[3][i];
+            Arra[4]=A[4][i];
+            
+            model.addRow(Arra);
+            model.setColumnIdentifiers(columnNames);
+
+            }
+                        i++;
+        }  
+    }
     
    
     @SuppressWarnings("unchecked")
@@ -73,7 +105,7 @@ public class deliverylist extends javax.swing.JFrame {
         display1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        display2 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -114,7 +146,7 @@ public class deliverylist extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        display2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -130,13 +162,13 @@ public class deliverylist extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setResizable(false);
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
-            jTable2.getColumnModel().getColumn(2).setResizable(false);
-            jTable2.getColumnModel().getColumn(3).setResizable(false);
-            jTable2.getColumnModel().getColumn(4).setResizable(false);
+        jScrollPane2.setViewportView(display2);
+        if (display2.getColumnModel().getColumnCount() > 0) {
+            display2.getColumnModel().getColumn(0).setResizable(false);
+            display2.getColumnModel().getColumn(1).setResizable(false);
+            display2.getColumnModel().getColumn(2).setResizable(false);
+            display2.getColumnModel().getColumn(3).setResizable(false);
+            display2.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jButton2.setText("Back");
@@ -241,13 +273,13 @@ public class deliverylist extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable display1;
+    private javax.swing.JTable display2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
