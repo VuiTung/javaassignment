@@ -473,7 +473,7 @@ class managingStaff extends staff{
     }
 class deliveryStaff extends staff{
         private String Assignedtransport;
-
+        private order order;
     public deliveryStaff(String Assignedtransport) {
         this.Assignedtransport = Assignedtransport;
     }
@@ -483,7 +483,7 @@ class deliveryStaff extends staff{
         this.Assignedtransport = Assignedtransport;
     }
     public deliveryStaff(){}
-        
+
        
 
         public String getAssignedtransport() {
@@ -513,6 +513,111 @@ class deliveryStaff extends staff{
             }
                 catch(IOException es){
                     System.out.println(es.toString());
+        }
+        }
+        
+        private static Scanner sc;
+        private static Scanner sc2;
+        public void updatedelivery(int id){
+            FileWriter fw=null;
+            String tempfile="Tempfile.txt";
+     String filepath="delivery.txt";
+        File oldfile= new File(filepath);   
+        File newfile= new File(tempfile);   
+        String ID1=""; String Date=""; String Status=""; String Address =""; String orderID = ""; String StaffID ="";
+        try{
+            fw= new FileWriter(tempfile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            sc = new Scanner(new File(filepath)) ;
+            
+               String temp;
+            while(sc.hasNext()){
+            temp=sc.nextLine();
+            String []tempArr = temp.split(",");  
+                ID1=tempArr[0];
+                Date=tempArr[1];
+                Status=tempArr[2];
+                Address=tempArr[3];
+                orderID=tempArr[4];
+                StaffID=tempArr[5];
+                
+             if(orderID.equals(Integer.toString(id))){
+                 pw.println(ID1 + "," + Date + "," + "Complete" + "," +  Address + "," +orderID + "," + StaffID );
+             
+             }
+             else{  
+                 pw.println(ID1 + "," + Date + "," + Status + "," +  Address + "," +orderID + "," + StaffID );
+               
+             }
+             
+            }
+           
+            
+            pw.flush();
+            pw.close();
+            
+        }
+        catch(Exception e){
+            System.out.println("Error" + e);
+
+        }
+        finally{
+        sc.close();
+        oldfile.delete();
+            File dump = new File(filepath);
+            newfile.renameTo(dump);
+            System.out.println("success");
+        }
+        FileWriter fw2=null;
+            String tempfile2="Tempfile2.txt";
+     String filepath2="order.txt";
+        File oldfile2= new File(filepath2);   
+        File newfile2= new File(tempfile2);   
+        String ID2="";String name = ""; String Weight ="";  String Date2=""; String Status2=""; String price ="";
+        try{
+            fw2= new FileWriter(tempfile2, true);
+            BufferedWriter bw2 = new BufferedWriter(fw2);
+            PrintWriter pw2 = new PrintWriter(bw2);
+            sc2 = new Scanner(new File(filepath2)) ;
+            
+               String temp;
+            while(sc2.hasNext()){
+            temp=sc2.nextLine();
+            String []tempArr = temp.split(",");  
+                ID2=tempArr[0];
+                name=tempArr[1];
+                Weight=tempArr[2];
+                Date2=tempArr[3];
+                Status2=tempArr[4];
+                price=tempArr[5];
+                
+             if(ID2.equals(Integer.toString(id))){
+                 pw2.println(ID2 + "," + name + "," + Weight + "," +  Date2 + "," + "Done" + "," + price );
+             
+             }
+             else{  
+                 pw2.println(ID2 + "," + name + "," + Weight + "," +  Date2 + "," + Status2 + "," + price );
+               
+             }
+             
+            }
+           
+            
+            pw2.flush();
+            pw2.close();
+            
+        }
+        catch(Exception e){
+            System.out.println("Error" + e);
+
+        }
+        finally{
+        sc2.close();
+            oldfile2.delete();
+            File dump2 = new File(filepath2);
+            newfile2.renameTo(dump2);
+            System.out.println("success2");
         }
         }
         

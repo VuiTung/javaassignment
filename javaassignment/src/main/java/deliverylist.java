@@ -1,6 +1,7 @@
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -162,6 +163,7 @@ public class deliverylist extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        display2.setEnabled(false);
         jScrollPane2.setViewportView(display2);
         if (display2.getColumnModel().getColumnCount() > 0) {
             display2.getColumnModel().getColumn(0).setResizable(false);
@@ -229,7 +231,23 @@ public class deliverylist extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    if(display1.getSelectionModel().isSelectionEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Please select Today task");
+    }
+        else
+        {
+        Fileoperator std =new Fileoperator();
+        int row = display1.getSelectedRow();
+        String[] array = std.returndelivery(display1.getModel().getValueAt(row,0).toString());
+        String detail[] = new String[20];
+            detail[0]=array[0];
+            detail[1]=array[1];
+            detail[2]=array[2];
+            detail[3]=array[3];
+            detail[4]=array[4]; 
+        deliverypage.main(detail);
+        this.setVisible(false); 
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

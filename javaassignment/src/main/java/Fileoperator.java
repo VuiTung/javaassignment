@@ -552,4 +552,32 @@ public class Fileoperator {
         
                  
     }
+    public String[] returndelivery(String id){
+        String[] deliverydetail = null;
+        try{
+       File file1 = new File ("delivery.txt");
+        sc = new Scanner(file1);
+       String temp;
+       boolean found =false;
+        while(sc.hasNext()&& !found){
+            temp=sc.nextLine();
+            String []tempArr = temp.split(",");            
+            if(id.equals(tempArr[0])){
+                String date =tempArr[1];
+                String Status = tempArr[2];
+                String Address = tempArr[3];
+                String orderid = tempArr[4];
+                String staffid = tempArr[5];
+                found = true;
+                deliverydetail = new String[]{id, date, Address,orderid, Status, staffid};
+                }
+            }
+        
+       }catch (FileNotFoundException ex){
+           ex.toString();
+       }finally{
+            sc.close();
+        }
+        return deliverydetail;
+    }
 }
