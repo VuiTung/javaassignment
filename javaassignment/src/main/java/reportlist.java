@@ -40,7 +40,7 @@ public class reportlist extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Text1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,6 +66,12 @@ public class reportlist extends javax.swing.JFrame {
         jLabel1.setText("Report");
 
         jLabel2.setText("Search:");
+
+        Text1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Text1KeyReleased(evt);
+            }
+        });
 
         jButton1.setText("View");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +102,7 @@ public class reportlist extends javax.swing.JFrame {
                         .addGap(220, 220, 220)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(133, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -107,7 +113,7 @@ public class reportlist extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Text1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
@@ -146,6 +152,40 @@ public class reportlist extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void Text1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Text1KeyReleased
+        String[] columnNames ={"ID","Name","Title","Content"};
+        model =(DefaultTableModel)display.getModel();
+        model.setRowCount(0);//clear the model
+        display.revalidate();
+        //function here
+        Fileoperator std =new Fileoperator();
+
+        String[][] A =std.returnreport();
+        int lines = Integer.parseInt(A[0][0]);
+
+
+
+        int i =1;
+
+        while(i<lines+1){
+            String []Arra = new String[4];
+
+            Arra[0]=A[2][i];
+            Arra[1]=A[1][i];
+            Arra[2]=A[3][i];
+            Arra[3]=A[4][i];
+
+               if(Arra[0].toLowerCase().contains(Text1.getText().toLowerCase())||Arra[1].toLowerCase().contains(Text1.getText().toLowerCase())||Arra[2].toLowerCase().contains(Text1.getText().toLowerCase())){
+
+            model.addRow(Arra);//add a row to the table mode
+            }
+
+            model.setColumnIdentifiers(columnNames);
+            i++;
+        }
+                // TODO add your handling code here:
+    }//GEN-LAST:event_Text1KeyReleased
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -176,12 +216,12 @@ public class reportlist extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Text1;
     private javax.swing.JTable display;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -42,7 +42,7 @@ public class feedbacklist extends javax.swing.JFrame {
 
         display = new javax.swing.JScrollPane();
         display1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        Text1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -58,6 +58,12 @@ public class feedbacklist extends javax.swing.JFrame {
             }
         ));
         display.setViewportView(display1);
+
+        Text1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Text1KeyReleased(evt);
+            }
+        });
 
         jLabel1.setText("Search:");
 
@@ -89,7 +95,7 @@ public class feedbacklist extends javax.swing.JFrame {
                         .addGap(182, 182, 182)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -97,7 +103,7 @@ public class feedbacklist extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Text1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(46, 46, 46)
                 .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,6 +121,34 @@ public class feedbacklist extends javax.swing.JFrame {
             new menu1().setVisible(true);
             this.setVisible(false);         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void Text1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Text1KeyReleased
+        String[] columnNames ={"Name","Title","Content","Status"};
+        model =(DefaultTableModel)display1.getModel();
+        model.setRowCount(0);//clear the model
+        display1.revalidate();
+        //function here
+        Fileoperator std =new Fileoperator();
+
+        String[][] A =std.returnfeedback();
+        int lines = Integer.parseInt(A[0][0]);
+        int i =1;
+        while(i<lines+1){
+            String []Arra = new String[4];
+
+            Arra[0]=A[1][i];
+            Arra[1]=A[3][i];
+            Arra[2]=A[4][i];
+            Arra[3]=A[5][i];
+               if(Arra[0].toLowerCase().contains(Text1.getText().toLowerCase())||Arra[1].toLowerCase().contains(Text1.getText().toLowerCase())||
+                       Arra[3].toLowerCase().contains(Text1.getText().toLowerCase())){
+            model.addRow(Arra);//add a row to the table mode
+            }
+
+            model.setColumnIdentifiers(columnNames);
+            i++;
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_Text1KeyReleased
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -148,11 +182,11 @@ public class feedbacklist extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Text1;
     private javax.swing.JScrollPane display;
     private javax.swing.JTable display1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
