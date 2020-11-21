@@ -21,6 +21,7 @@ public class deliverylist extends javax.swing.JFrame {
      */
     public static String ID;
     DefaultTableModel model;
+    DefaultTableModel model2;
     public deliverylist() {
         initComponents();
        
@@ -101,7 +102,7 @@ public class deliverylist extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Text1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         display1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -115,6 +116,12 @@ public class deliverylist extends javax.swing.JFrame {
         jLabel1.setText("Delivery tasks");
 
         jLabel2.setText("Search");
+
+        Text1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Text1KeyReleased(evt);
+            }
+        });
 
         display1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -193,7 +200,7 @@ public class deliverylist extends javax.swing.JFrame {
                         .addGap(182, 182, 182)
                         .addComponent(jLabel2)
                         .addGap(47, 47, 47)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Text1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -215,7 +222,7 @@ public class deliverylist extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Text1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
@@ -251,8 +258,74 @@ public class deliverylist extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        new menuDelivery().setVisible(true);
+        this.hide();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void Text1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Text1KeyReleased
+       DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+                LocalDateTime now = LocalDateTime.now(); 
+                String date = dtf.format(now);
+                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID"};
+        model =(DefaultTableModel)display1.getModel();
+        model.setRowCount(0);//clear the model
+        display1.revalidate();
+        //function here
+        Fileoperator std =new Fileoperator();
+        String[][] A =std.returntodaydeliverylist(date);
+        
+        int lines = Integer.parseInt(A[0][0]);
+        int i =1;
+        while(i<lines+1){
+
+            if(A[5][i].equals(ID)){
+            String []Arra = new String[5];
+            Arra[0]=A[0][i];
+            Arra[1]=A[1][i];
+            Arra[2]=A[2][i];
+            Arra[3]=A[3][i];
+            Arra[4]=A[4][i];
+            
+            if(Arra[0].toLowerCase().contains(Text1.getText().toLowerCase())||Arra[4].toLowerCase().contains(Text1.getText().toLowerCase())||Arra[3].toLowerCase().contains(Text1.getText().toLowerCase())){
+
+            model.addRow(Arra);//add a row to the table mode
+            }
+            model.setColumnIdentifiers(columnNames);
+
+            }
+                        i++;
+        }  
+        
+ 
+        model2 =(DefaultTableModel)display2.getModel();
+        model2.setRowCount(0);//clear the model
+        display2.revalidate();
+        //function here
+        Fileoperator std2 =new Fileoperator();
+        String[][] A2 =std2.returnfuturedeliverylist(date);
+        
+        int lines2 = Integer.parseInt(A[0][0]);
+        int i2 =1;
+        while(i2<lines+1){
+
+            if(A[5][i2].equals(ID)){
+            String []Arra2 = new String[5];
+            Arra2[0]=A2[0][i2];
+            Arra2[1]=A2[1][i2];
+            Arra2[2]=A2[2][i2];
+            Arra2[3]=A2[3][i2];
+            Arra2[4]=A2[4][i2];
+            
+             if(Arra2[0].toLowerCase().contains(Text1.getText().toLowerCase())||Arra2[4].toLowerCase().contains(Text1.getText().toLowerCase())||Arra2[3].toLowerCase().contains(Text1.getText().toLowerCase())){
+
+            model2.addRow(Arra2);//add a row to the table mode
+            }
+            model2.setColumnIdentifiers(columnNames);
+
+            }
+                        i2++;
+        }  
+    }//GEN-LAST:event_Text1KeyReleased
 
     /**
      * @param args the command line arguments
@@ -290,6 +363,7 @@ public class deliverylist extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Text1;
     private javax.swing.JTable display1;
     private javax.swing.JTable display2;
     private javax.swing.JButton jButton1;
@@ -298,6 +372,5 @@ public class deliverylist extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
