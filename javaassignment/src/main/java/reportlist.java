@@ -82,6 +82,11 @@ public class reportlist extends javax.swing.JFrame {
         });
 
         jButton3.setText("Delete");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -191,6 +196,34 @@ public class reportlist extends javax.swing.JFrame {
         }
                 // TODO add your handling code here:
     }//GEN-LAST:event_Text1KeyReleased
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        
+        try
+        {
+            int row = display.getSelectedRow();
+            String id =display.getModel().getValueAt(row,0).toString();
+            model =(DefaultTableModel)display.getModel();
+            model.setRowCount(0);//clear the model
+            display.revalidate();//refresh the table
+            Text1.setText("");
+
+            String filepath = "report.txt";
+            managingStaff std = new managingStaff();
+            std.deletereport(id, filepath);
+
+            JOptionPane.showMessageDialog(rootPane, "Delete successfully");
+            new menu1().setVisible(true);
+            this.hide();
+        }
+        
+        catch(Exception e3)
+        {
+            JOptionPane.showMessageDialog(rootPane, "Please select a user");
+        }
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

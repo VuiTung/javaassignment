@@ -393,13 +393,232 @@ class managingStaff extends staff{
         }
             
             
-        } 
+        }
+        
+        public void deletereport(String id, String filepath){
+            
+        String tempfile="Tempfile.txt";
+        File oldfile= new File(filepath);   
+        File newfile= new File(tempfile);   
+         String userid=""; String name=""; String reportid =""; String title = ""; String content ="";
+        try{
+            FileWriter fw= new FileWriter(tempfile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            sc = new Scanner(new File(filepath)) ;
+            
+               String temp;
+            while(sc.hasNext())
+            {
+                temp=sc.nextLine();
+                String []tempArr = temp.split(",");  
+                userid=tempArr[0];
+                name=tempArr[1];
+                reportid =tempArr[2];
+                title=tempArr[3];
+                content=tempArr[4];
+                
+             if(reportid.equals(id))
+             {
+              
+             }
+                else
+                {  
+                    pw.println(userid + "," + name + "," + reportid + "," + title + "," + content);
+                }
+             
+            }
+           
+            
+            pw.flush();
+            pw.close();
+           
+          
+            
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error");
+        }
+            finally
+        {
+            sc.close();
+            
+            oldfile.delete();
+            File dump = new File(filepath);
+            newfile.renameTo(dump);
+        }
+            
+            
+        }
+        
+        public void deletefeedback(String id, String filepath, String filepath1, String status1)
+    {
+            
+        String tempfile="Tempfile.txt";
+        String tempfile1="Tempfile2.txt";
+        File oldfile= new File(filepath);
+        File oldfile1= new File(filepath1);
+        File newfile= new File(tempfile);
+        File newfile1=new File(tempfile1);
+        String userID=""; String name=""; String fbID=""; String title = ""; String content=""; String status ="";
+        String replyID=""; String reply="";
+        
+         if(status1.equals("Replied"))
+        {
+         
+         try{
+                FileWriter fw= new FileWriter(tempfile1, true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter pw = new PrintWriter(bw);
+                sc = new Scanner(new File(filepath1)) ;
+
+                   String temp;
+
+                    while(sc.hasNext())
+                    {
+                        temp=sc.nextLine();
+                        String []tempArr = temp.split(",");
+                        fbID=tempArr[0];
+                        replyID=tempArr[1];
+                        reply =tempArr[2];
+
+                        if(fbID.equals(id))
+                        {
+
+                        }
+                            else
+                            {
+                               pw.println(fbID + "," + replyID + "," + reply);
+                            }
+
+                    }
+
+
+                pw.flush();
+                pw.close();
+            }
+                catch(Exception e)
+                {
+                    System.out.println("Error");
+                }
+                    finally
+                    {
+                        sc.close();
+                        oldfile1.delete();
+                        File dump = new File(filepath1);
+                        newfile1.renameTo(dump);
+                    }
+         
+            try
+            {   
+                FileWriter fw1= new FileWriter(tempfile, true);
+                BufferedWriter bw1 = new BufferedWriter(fw1);
+                PrintWriter pw1 = new PrintWriter(bw1);
+                sc = new Scanner(new File(filepath)) ;
+
+                   String temp;
+
+                while(sc.hasNext())
+                {
+                    temp=sc.nextLine();
+                    String []tempArr = temp.split(",");
+                    userID=tempArr[0];
+                    name=tempArr[1];
+                    fbID =tempArr[2];
+                    title=tempArr[3];
+                    content=tempArr[4];
+                    status=tempArr[5];
+
+                    if(fbID.equals(id))
+                    {
+
+                    }
+                       else
+                        {
+                           pw1.println(userID + "," + name + "," +fbID + "," + title + "," +content+ "," + status);
+                        }
+
+            }
+           
+            
+            pw1.flush();
+            pw1.close();
+           
+          
+            
+            }
+            catch(Exception e)
+            {
+                System.out.println("Error");
+            }
+                finally
+                {
+                    sc.close();
+                    oldfile.delete();
+                    File dump1 = new File(filepath);
+                    newfile.renameTo(dump1);
+                }
+        }
+         else
+        {
+            try
+            {
+                FileWriter fw2= new FileWriter(tempfile, true);
+                BufferedWriter bw2 = new BufferedWriter(fw2);
+                PrintWriter pw2 = new PrintWriter(bw2);
+                sc = new Scanner(new File(filepath)) ;
+
+                   String temp;
+
+                while(sc.hasNext())
+                {
+                    temp=sc.nextLine();
+                    String []tempArr = temp.split(",");
+                    userID=tempArr[0];
+                    name=tempArr[1];
+                    fbID =tempArr[2];
+                    title=tempArr[3];
+                    content=tempArr[4];
+                    status=tempArr[5];
+
+                    if(fbID.equals(id))
+                    {
+
+                    }
+                       else
+                       {
+                           pw2.println(userID + "," + name + "," +fbID + "," + title + "," +content+ "," + status);
+                       }
+
+                }
+           
+            
+                pw2.flush();
+                pw2.close();
+                
+                
+            
+            }
+            catch(Exception e)
+                {
+                    System.out.println("Error");
+                }
+                    finally
+                    {
+                        sc.close();
+                        oldfile.delete();
+                        File dump2 = new File(filepath);
+                        newfile.renameTo(dump2);
+                    }
+        }
+    }
         
 
     public void updateprofile(){
             FileWriter fw=null;
             String tempfile="Tempfile.txt";
-     String filepath="assi.txt";
+        String filepath="assi.txt";
         File oldfile= new File(filepath);   
         File newfile= new File(tempfile);   
         String gen=""; String ID1=""; String user=""; String pas =""; String age1 = ""; String pn =""; String mail=""; String rol="";String shift=""; 
