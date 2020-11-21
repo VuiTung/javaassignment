@@ -21,6 +21,7 @@ public class deliverypage extends javax.swing.JFrame {
     public static String Address;
     public static String OrderID;
     public static String Status;
+    public static String staffid;
     public deliverypage() {
         initComponents();
         jLabel7.setText(id);
@@ -172,13 +173,29 @@ public class deliverypage extends javax.swing.JFrame {
        deliveryStaff std = new deliveryStaff();
        std.updatedelivery(Integer.parseInt(OrderID));
        JOptionPane.showMessageDialog(rootPane, "Good Job");
-       new menuDelivery().setVisible(true);
+        Fileoperator stdd = new Fileoperator();
+        if(stdd.checkPositionid(staffid)==true)
+    {
+            new deliverylist().setVisible(true);
             this.hide();
+    }
+            else{
+            new Deliverytasklistadmin().setVisible(true);
+            this.hide();
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            new menuDelivery().setVisible(true);
-            this.hide();        
+           Fileoperator stdd = new Fileoperator();
+        if(stdd.checkPositionid(staffid)==true)
+    {
+            new deliverylist().setVisible(true);
+            this.hide();
+    }
+            else{
+            new Deliverytasklistadmin().setVisible(true);
+            this.hide();
+            }// TODO add your handling code here:        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -212,6 +229,7 @@ public class deliverypage extends javax.swing.JFrame {
         Address=args[2];
         OrderID=args[3];
         Status=args[4];
+        staffid=args[5];
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
