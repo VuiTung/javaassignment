@@ -130,12 +130,10 @@ else{
     }//GEN-LAST:event_submitActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        new menu1().setVisible(true);
+        this.hide();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
-    
-    
     
     private boolean checkEmpty(){
     if(title.getText().equals("")||content.getText().equals("")){
