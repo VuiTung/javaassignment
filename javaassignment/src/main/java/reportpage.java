@@ -110,7 +110,8 @@ public static String id;
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
-if(checkEmpty()==true)
+    Fileoperator stdd = new Fileoperator();
+        if(checkEmpty()==true)
     {
         errormsg.setText("Plese complete the form");
     }
@@ -123,15 +124,34 @@ else{
             System.out.println(std2.getFullname()+ std2.getID());
         std2.addReport();
         JOptionPane.showMessageDialog(rootPane, "Report submitted successfully");
-            new menuDelivery().setVisible(true);
-            this.hide();
+
+            if(stdd.checkPosition(name)==true)
+            {
+                    new menuDelivery().setVisible(true);
+                    this.hide();
+            }
+                else
+                {
+                new menu1().setVisible(true);
+                this.hide();
+                }
     }
 // TODO add your handling code here:
     }//GEN-LAST:event_submitActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new menu1().setVisible(true);
-        this.hide();        // TODO add your handling code here:
+    Fileoperator stdd = new Fileoperator();    
+        if(stdd.checkPosition(name)==true)
+            {
+                    new menuDelivery().setVisible(true);
+                    this.hide();
+            }
+                else
+                {
+                new menu1().setVisible(true);
+                this.hide();
+                }
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     

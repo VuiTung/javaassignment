@@ -108,26 +108,27 @@ public static String id;
         errormsg.setText("Plese complete the form");
         }
         else
-    {
-        errormsg.setText("");
-        Fileoperator std1 =new Fileoperator();
-        feedback std = new feedback(std1.generateID(2, "feedback.txt"), title.getText(), content.getText(),"New");
-        System.out.println(name + id);
-        staff std2 = new staff(name, Integer.parseInt(id), std);
-            System.out.println(std2.getFullname()+ std2.getID());
-        std2.addFeedback();
-        JOptionPane.showMessageDialog(rootPane, "Feedback submitted successfully");
+        {
+            errormsg.setText("");
+            Fileoperator std1 =new Fileoperator();
+            feedback std = new feedback(std1.generateID(2, "feedback.txt"), title.getText(), content.getText(),"New");
+            System.out.println(name + id);
+            staff std2 = new staff(name, Integer.parseInt(id), std);
+                System.out.println(std2.getFullname()+ std2.getID());
+            std2.addFeedback();
+            JOptionPane.showMessageDialog(rootPane, "Feedback submitted successfully");
 
-            if(stdd.checkPosition(name)==true)
-    {
-            new menuDelivery().setVisible(true);
-            this.hide();
-    }
-            else{
-            new menu1().setVisible(true);
-            this.hide();
+                if(stdd.checkPosition(name)==true)
+            {
+                    new menuDelivery().setVisible(true);
+                    this.hide();
             }
-}
+                else
+                {
+                new menu1().setVisible(true);
+                this.hide();
+                }
+        }
 
     }//GEN-LAST:event_submitActionPerformed
 
