@@ -1,4 +1,5 @@
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -48,6 +49,11 @@ public class viewfeedbackreply extends javax.swing.JFrame {
         jLabel1.setText("Feedback and Reply");
 
         jButton1.setText("View");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -101,9 +107,9 @@ public class viewfeedbackreply extends javax.swing.JFrame {
         Fileoperator std =new Fileoperator();
         String[][] A =std.returnfeedbacknreply();
         
-        ////////////error3,null
+        
         System.out.println(A[0][0]);
-        System.out.println(A[1][0]);
+        System.out.println(A[1][1]);
         int lines = Integer.parseInt(A[0][0]);
         int i =1;
         while(i<lines+1){
@@ -117,16 +123,46 @@ public class viewfeedbackreply extends javax.swing.JFrame {
             Arra[0]=A[2][i];
             model.addRow(Arra);
             model.setColumnIdentifiers(columnNames);
-            i++;
-            }
             
+            }
+            i++;
         }
         
     }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new menu1().setVisible(true);
-        this.hide();        // TODO add your handling code here:
+        Fileoperator stdd = new Fileoperator();
+        if(stdd.checkPositionid(id)==true)
+    {
+            new menuDelivery().setVisible(true);
+            this.hide();
+    }
+            else{
+            new menu1().setVisible(true);
+            this.hide();
+            }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(display.getSelectionModel().isSelectionEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Please select a report");
+    }
+        else
+        {
+        Fileoperator std =new Fileoperator();
+        int row = display.getSelectedRow();
+        
+        String detail[] = new String[20];
+        detail[0]=display.getModel().getValueAt(row,0).toString();   
+        detail[1]=display.getModel().getValueAt(row,1).toString();
+        detail[2]=display.getModel().getValueAt(row,2).toString();  
+        detail[3]=display.getModel().getValueAt(row,3).toString();  
+        detail[4]=display.getModel().getValueAt(row,4).toString();
+        detail[5]=display.getModel().getValueAt(row,5).toString();
+        viewreplypage.main(detail);
+        this.setVisible(false); 
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

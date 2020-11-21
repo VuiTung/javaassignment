@@ -644,37 +644,81 @@ public class Fileoperator {
         {
           e.printStackTrace();
         }
-        int result=0;
+        System.out.println("check point 1" +feedbacklist[1][1]);
+        
         try 
            {
-            BufferedReader in = new BufferedReader(new FileReader("feedbackreply.txt"));
+            BufferedReader in2 = new BufferedReader(new FileReader("feedbackreply.txt"));
 
               String line;
               
-              int y = 6;
-              while ((line = in.readLine()) != null)  //file reading
+              int y1 = 6;
+              while ((line = in2.readLine()) != null)  //file reading
               {
-                 String[] values = line.split(",");
-                 y=0;
-                 for(int t=1; t<lines; t++)
+                 String[] values2 = line.split(",");
+                 
+                 for(int t=1; t<lines+1; t++)
                  {
-                  if(values[0].equals(feedbacklist[2][t]))
+                     
+                    
+                  if(values2[0].equals(feedbacklist[2][t]))
                   {
-                    for (String str : values){
-                        feedbacklist[y][t] = str; 
-                        y += 1; 
-                        result+=1;
+                       y1=6; 
+                        
+                    for (String str2 : values2){
+                        feedbacklist[y1][t] = str2; 
+                        y1 += 1; 
+                        
+                                            }
+                    
+
                     }
-                    }
+                  
                 }
               }
-              in.close();
+              in2.close();
             } 
         catch (IOException e) 
         {
           e.printStackTrace();
         }
-        feedbacklist[0][0] = Integer.toString(result); 
+        feedbacklist[0][0] = Integer.toString(lines); 
         return feedbacklist;
+    }
+    public boolean checkPositionid(String id)
+    {
+            boolean X = false;
+            try
+        {
+            
+            File file1 = new File ("assi.txt");
+            sc = new Scanner(file1);
+            String temp;
+            boolean found =false;
+            String role =  "Delivery staff";
+            while(sc.hasNext()&& !found){
+            temp=sc.nextLine();
+            String []tempArr = temp.split(",");
+            if(id.equals(tempArr[0])){
+                found =true;
+               if (role.equals(tempArr[7])){
+               X = true;
+               }
+                    else 
+                    {
+                    X = false;
+                    }
+               
+               }
+            }
+        }
+                catch(IOException es)
+            {
+                System.out.println(es.toString());  
+            }
+            finally{
+             sc.close();
+        }
+            return X;
     }
 }
