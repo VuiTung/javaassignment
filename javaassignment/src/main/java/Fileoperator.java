@@ -82,6 +82,36 @@ public class Fileoperator {
         }
         return reportdetail;
     }
+    public String[] returnorder(String id){
+        String[] orderdetail = null;
+        try{
+       File file1 = new File ("order.txt");
+        sc = new Scanner(file1);
+       String temp;
+       boolean found =false;
+        while(sc.hasNext()&& !found){
+            temp=sc.nextLine();
+            String []tempArr = temp.split(",");            
+            if(id.equals(tempArr[0])){
+                String owner =tempArr[1];
+                String weight =tempArr[2];
+                String date = tempArr[3];
+                String status = tempArr[4];
+                String price = tempArr[5];
+                
+                found = true;
+                orderdetail = new String[]{id, owner, weight, date, status, price};
+                }
+            }
+        
+       }catch (FileNotFoundException ex){
+           ex.toString();
+       }finally{
+            sc.close();
+        }
+        return orderdetail;
+    }
+    
     public String[] returnfeedback1(String id){
         String[] reportdetail = null;
         try{
@@ -152,6 +182,55 @@ public class Fileoperator {
       }
 
         return Userlist;
+    }
+    
+    
+    public String[][] returnorderlist() {
+        long row =0;
+        Path path = Paths.get("order.txt");
+        try 
+    {
+        
+          row = Files.lines(path).count();
+          
+    } 
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+        }
+            int lines =(int)row;
+      
+            String[][] orderlist = new String[6][lines+1];
+            orderlist[0][0] = Integer.toString(lines); 
+            try 
+            {
+                BufferedReader in = new BufferedReader(new FileReader("order.txt"));
+
+                String line;
+                int x = 1;
+                int y = 0;
+                while ((line = in.readLine()) != null)  //file reading
+                {
+                 String[] values = line.split(",");
+                 y=0;
+                    for (String str : values)
+                    {   
+                     orderlist[y][x] = str; 
+
+                     y += 1; 
+                    }
+
+                    x += 1;
+
+                }
+                in.close();
+            } 
+                catch (IOException e) 
+                {
+                    e.printStackTrace();
+                }
+
+        return orderlist;
     }
     
         public String[][] returnfeedback() {

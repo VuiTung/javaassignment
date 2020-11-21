@@ -614,7 +614,115 @@ class managingStaff extends staff{
         }
     }
         
+        public void deleteorder(String id, String filepath, String filepath1)
+    {
+            
+        String tempfile="Tempfile.txt";
+        String tempfile1="Tempfile2.txt";
+        File oldfile= new File(filepath);
+        File oldfile1= new File(filepath1);
+        File newfile= new File(tempfile);
+        File newfile1=new File(tempfile1);
+        String orderid=""; String owner=""; String weight=""; String date= ""; String status=""; String price ="";
+        String delid=""; String date1=""; String status1=""; String add="";String staffid="";
+         
+         try{
+                FileWriter fw= new FileWriter(tempfile1, true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter pw = new PrintWriter(bw);
+                sc = new Scanner(new File(filepath1)) ;
 
+                   String temp;
+
+                    while(sc.hasNext())
+                    {
+                        temp=sc.nextLine();
+                        String []tempArr = temp.split(",");
+                        orderid=tempArr[0];
+                        owner=tempArr[1];
+                        weight =tempArr[2];
+                        date=tempArr[3];
+                        status=tempArr[4];
+                        price=tempArr[5];
+
+                        if(orderid.equals(id))
+                        {
+
+                        }
+                            else
+                            {
+                               pw.println(orderid + "," + owner + "," + weight+ "," + date + "," + status + "," + price );
+                            }
+
+                    }
+
+
+                pw.flush();
+                pw.close();
+            }
+                catch(Exception e)
+                {
+                    System.out.println("Error");
+                }
+                    finally
+                    {
+                        sc.close();
+                        oldfile1.delete();
+                        File dump = new File(filepath1);
+                        newfile1.renameTo(dump);
+                    }
+         
+            try
+            {   
+                FileWriter fw1= new FileWriter(tempfile, true);
+                BufferedWriter bw1 = new BufferedWriter(fw1);
+                PrintWriter pw1 = new PrintWriter(bw1);
+                sc = new Scanner(new File(filepath)) ;
+
+                   String temp;
+
+                while(sc.hasNext())
+                {
+                    temp=sc.nextLine();
+                    String []tempArr = temp.split(",");
+                    delid=tempArr[0];
+                    date1=tempArr[1];
+                    status1 =tempArr[2];
+                    add=tempArr[3];
+                    orderid=tempArr[4];
+                    staffid=tempArr[5];
+
+                    if(orderid.equals(id))
+                    {
+
+                    }
+                       else
+                        {
+                           pw1.println(delid + "," + date1 + "," + status1 + "," + add + "," + orderid + "," + staffid );
+                        }
+
+            }
+           
+            
+            pw1.flush();
+            pw1.close();
+           
+          
+            
+            }
+            catch(Exception e)
+            {
+                System.out.println("Error");
+            }
+                finally
+                {
+                    sc.close();
+                    oldfile.delete();
+                    File dump1 = new File(filepath);
+                    newfile.renameTo(dump1);
+                }
+        
+    }     
     public void updateprofile(){
             FileWriter fw=null;
             String tempfile="Tempfile.txt";
