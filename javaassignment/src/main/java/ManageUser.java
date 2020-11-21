@@ -237,7 +237,7 @@ private void defaul(){
     private void Text1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Text1KeyReleased
 
         
-         String[] columnNames ={"ID","Username","Age","Gender","Phone Number", "Email", "Role", "Position"};
+        String[] columnNames ={"ID","Username","Age","Gender","Phone Number", "Email", "Role", "Position"};
         model =(DefaultTableModel)display.getModel();
         model.setRowCount(0);//clear the model
         display.revalidate();

@@ -50,7 +50,7 @@ public class feedback {
         this.Content = Content;
     }
     
-    public String getReply(){
+    public String getReply2(){
         return (feedbackreply.toString());
     }
 
