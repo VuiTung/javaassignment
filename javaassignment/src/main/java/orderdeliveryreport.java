@@ -1,6 +1,10 @@
 
 import javax.swing.table.DefaultTableModel;
-
+import java.text.*;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.standard.OrientationRequested;
+import javax.swing.JTable;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -92,6 +96,7 @@ public class orderdeliveryreport extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -149,7 +154,7 @@ public class orderdeliveryreport extends javax.swing.JFrame {
             display2.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        jButton1.setText("Print");
+        jButton1.setText("Print Delivery");
         jButton1.setToolTipText("");
         jButton1.setMaximumSize(new java.awt.Dimension(80, 23));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -160,10 +165,22 @@ public class orderdeliveryreport extends javax.swing.JFrame {
 
         jButton2.setText("Back");
         jButton2.setToolTipText("");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Order");
 
         jLabel3.setText("Delivery");
+
+        jButton3.setText("Print Order");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -175,11 +192,13 @@ public class orderdeliveryreport extends javax.swing.JFrame {
                         .addGap(57, 57, 57)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(333, 333, 333)
+                        .addGap(245, 245, 245)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(212, 212, 212)
+                        .addGap(99, 99, 99)
+                        .addComponent(jButton3)
+                        .addGap(128, 128, 128)
                         .addComponent(jButton2)))
-                .addContainerGap(353, Short.MAX_VALUE))
+                .addContainerGap(299, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,7 +225,8 @@ public class orderdeliveryreport extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
 
@@ -214,8 +234,35 @@ public class orderdeliveryreport extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        MessageFormat header =new MessageFormat("Delivery Report");
+        MessageFormat footer = new MessageFormat("End");
+        try{
+            PrintRequestAttributeSet set = new HashPrintRequestAttributeSet();
+            set.add(OrientationRequested.LANDSCAPE);
+            display.print(JTable.PrintMode.FIT_WIDTH, header, footer, true, set, true);
+           
+        }catch(java.awt.print.PrinterException e){
+            System.out.println("error" +  e.getMessage());
+        }
+       
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+         MessageFormat header2 =new MessageFormat("Order Report");
+        MessageFormat footer2 = new MessageFormat("End");
+        try{
+            PrintRequestAttributeSet set = new HashPrintRequestAttributeSet();
+            set.add(OrientationRequested.LANDSCAPE);
+            display2.print(JTable.PrintMode.FIT_WIDTH, header2, footer2, true, set, true);
+        }catch(java.awt.print.PrinterException e){
+            System.out.println("error" +  e.getMessage());
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new menu1().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -257,6 +304,7 @@ public class orderdeliveryreport extends javax.swing.JFrame {
     private javax.swing.JTable display2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
