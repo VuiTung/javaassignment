@@ -32,7 +32,7 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
          DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
                 LocalDateTime now = LocalDateTime.now(); 
                 String date = dtf.format(now);
-                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID"};
+                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID", "Delivery Staff ID"};
         model =(DefaultTableModel)display1.getModel();
         model.setRowCount(0);//clear the model
         display1.revalidate();
@@ -45,12 +45,13 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
         while(i<lines+1){
 
             
-            String []Arra = new String[5];
+            String []Arra = new String[6];
             Arra[0]=A[0][i];
             Arra[1]=A[1][i];
             Arra[2]=A[2][i];
             Arra[3]=A[3][i];
             Arra[4]=A[4][i];
+            Arra[5]=A[5][i];
             
             model.addRow(Arra);
             model.setColumnIdentifiers(columnNames);
@@ -61,7 +62,7 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
          DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
                 LocalDateTime now = LocalDateTime.now(); 
                 String date = dtf.format(now);
-                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID"};
+                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID", "Delivery Staff ID"};
         model =(DefaultTableModel)display2.getModel();
         model.setRowCount(0);//clear the model
         display2.revalidate();
@@ -74,12 +75,13 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
         while(i<lines+1){
 
             
-            String []Arra = new String[5];
+            String []Arra = new String[6];
             Arra[0]=A[0][i];
             Arra[1]=A[1][i];
             Arra[2]=A[2][i];
             Arra[3]=A[3][i];
             Arra[4]=A[4][i];
+            Arra[5]=A[5][i];
             
             model.addRow(Arra);
             model.setColumnIdentifiers(columnNames);
@@ -278,7 +280,7 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
                 LocalDateTime now = LocalDateTime.now(); 
                 String date = dtf.format(now);
-                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID"};
+                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID", "Delivery Staff ID"};
         model =(DefaultTableModel)display1.getModel();
         model.setRowCount(0);//clear the model
         display1.revalidate();
@@ -291,12 +293,13 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
         while(i<lines+1){
 
             
-            String []Arra = new String[5];
+            String []Arra = new String[6];
             Arra[0]=A[0][i];
             Arra[1]=A[1][i];
             Arra[2]=A[2][i];
             Arra[3]=A[3][i];
             Arra[4]=A[4][i];
+            Arra[5]=A[5][i];
             
             if(Arra[0].toLowerCase().contains(Text1.getText().toLowerCase())||Arra[4].toLowerCase().contains(Text1.getText().toLowerCase())||Arra[3].toLowerCase().contains(Text1.getText().toLowerCase())){
 
@@ -327,6 +330,7 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
             Arra2[2]=A2[2][i2];
             Arra2[3]=A2[3][i2];
             Arra2[4]=A2[4][i2];
+            Arra2[5]=A2[5][i2];
             
              if(Arra2[0].toLowerCase().contains(Text1.getText().toLowerCase())||Arra2[4].toLowerCase().contains(Text1.getText().toLowerCase())||Arra2[3].toLowerCase().contains(Text1.getText().toLowerCase())){
 
