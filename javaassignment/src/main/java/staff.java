@@ -124,20 +124,7 @@ public class staff {
         this.Position = Position;
     }
     
-    public int generateID(){
-         FileWriter file = null;
-        try{
-         BufferedReader reader = new BufferedReader(new FileReader("assi.txt"));
-                int lines = 0;
-                while (reader.readLine() != null){ lines++;}
-                reader.close();
-                return lines + 1;
-                }
-             catch(IOException es){
-                System.out.println(es.toString());  
-                return 22;
-        }
-    }
+
     public String[] verifylogin(String position, String username1, String password1){
             
         String[] returnstring = null;

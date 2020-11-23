@@ -32,7 +32,7 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
          DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
                 LocalDateTime now = LocalDateTime.now(); 
                 String date = dtf.format(now);
-                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID"};
+                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID", "Delivery Staff ID"};
         model =(DefaultTableModel)display1.getModel();
         model.setRowCount(0);//clear the model
         display1.revalidate();
@@ -45,13 +45,13 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
         while(i<lines+1){
 
             
-            String []Arra = new String[5];
+            String []Arra = new String[6];
             Arra[0]=A[0][i];
             Arra[1]=A[1][i];
             Arra[2]=A[2][i];
             Arra[3]=A[3][i];
             Arra[4]=A[4][i];
-            
+            Arra[5]=A[5][i];
             model.addRow(Arra);
             model.setColumnIdentifiers(columnNames);
                         i++;
@@ -61,7 +61,7 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
          DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
                 LocalDateTime now = LocalDateTime.now(); 
                 String date = dtf.format(now);
-                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID"};
+                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID", "Delivery Staff ID"};
         model =(DefaultTableModel)display2.getModel();
         model.setRowCount(0);//clear the model
         display2.revalidate();
@@ -74,13 +74,13 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
         while(i<lines+1){
 
             
-            String []Arra = new String[5];
+            String []Arra = new String[6];
             Arra[0]=A[0][i];
             Arra[1]=A[1][i];
             Arra[2]=A[2][i];
             Arra[3]=A[3][i];
             Arra[4]=A[4][i];
-            
+            Arra[5]=A[5][i];
             model.addRow(Arra);
             model.setColumnIdentifiers(columnNames);
 
@@ -128,11 +128,11 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Delivery Task ID", "Date out", "Status", "Address", "Order ID"
+                "Delivery Task ID", "Date out", "Status", "Address", "Order ID", "Delivery Staff ID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -144,6 +144,7 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
             display1.getColumnModel().getColumn(0).setResizable(false);
             display1.getColumnModel().getColumn(1).setResizable(false);
             display1.getColumnModel().getColumn(2).setResizable(false);
+            display1.getColumnModel().getColumn(4).setResizable(false);
         }
 
         display2.setModel(new javax.swing.table.DefaultTableModel(
@@ -151,11 +152,11 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Delivery Task ID", "Date out", "Status", "Address", "Order"
+                "Delivery Task ID", "Date out", "Status", "Address", "Order", "Delivery Staff ID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -169,6 +170,7 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
             display2.getColumnModel().getColumn(1).setResizable(false);
             display2.getColumnModel().getColumn(2).setResizable(false);
             display2.getColumnModel().getColumn(4).setResizable(false);
+            display2.getColumnModel().getColumn(5).setResizable(false);
         }
 
         jButton1.setText("View");
@@ -250,7 +252,7 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
                 LocalDateTime now = LocalDateTime.now(); 
                 String date = dtf.format(now);
-                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID"};
+                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID", "Delivery Staff ID"};
         model =(DefaultTableModel)display1.getModel();
         model.setRowCount(0);//clear the model
         display1.revalidate();
@@ -263,13 +265,13 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
         while(i<lines+1){
 
             
-            String []Arra = new String[5];
+            String []Arra = new String[6];
             Arra[0]=A[0][i];
             Arra[1]=A[1][i];
             Arra[2]=A[2][i];
             Arra[3]=A[3][i];
             Arra[4]=A[4][i];
-            
+            Arra[5]=A[5][i];
             if(Arra[0].toLowerCase().contains(Text1.getText().toLowerCase())||Arra[4].toLowerCase().contains(Text1.getText().toLowerCase())||Arra[3].toLowerCase().contains(Text1.getText().toLowerCase())){
 
             model.addRow(Arra);//add a row to the table mode
@@ -293,13 +295,13 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
         while(i2<lines+1){
 
           
-            String []Arra2 = new String[5];
+            String []Arra2 = new String[6];
             Arra2[0]=A2[0][i2];
             Arra2[1]=A2[1][i2];
             Arra2[2]=A2[2][i2];
             Arra2[3]=A2[3][i2];
             Arra2[4]=A2[4][i2];
-            
+            Arra2[5]=A2[5][i];
              if(Arra2[0].toLowerCase().contains(Text1.getText().toLowerCase())||Arra2[4].toLowerCase().contains(Text1.getText().toLowerCase())||Arra2[3].toLowerCase().contains(Text1.getText().toLowerCase())){
 
             model2.addRow(Arra2);//add a row to the table mode

@@ -329,7 +329,7 @@ public class Fileoperator {
         try{
          BufferedReader reader = new BufferedReader(new FileReader(filename));
                String line;
-                while ((line=reader.readLine()) != null){ lines++;
+                while ((line=reader.readLine()) != null){ 
                  String[] values = line.split(",");
                 lines=Integer.parseInt(values[i]);
                 }
@@ -799,6 +799,60 @@ public class Fileoperator {
              sc.close();
         }
             return X;
+    }
+public String[][] returndeliveryreport() {
+        long row =0;
+        Path path = Paths.get("delivery.txt");
+        try {
+          row = Files.lines(path).count();
+          
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
+        int lines =(int)row;
+      
+          String[][] deliverydetail = new String[6][lines+1];
+          
+           
+        try 
+           {
+            BufferedReader in = new BufferedReader(new FileReader("delivery.txt"));
+
+              String line;
+              int num =0;
+              int x = 1;
+              int y = 0;
+              while ((line = in.readLine()) != null)  //file reading
+              {
+                  
+                      String[] values = line.split(",");
+                 y=0;
+                 
+                 
+                 
+                      
+                 for (String str : values){   
+                     deliverydetail[y][x] = str; 
+                     
+                     y += 1; 
+                 }
+                 
+                 x += 1;
+                 num+=1;
+                  
+              }
+              in.close();
+              deliverydetail[0][0] = Integer.toString(num);
+            } 
+        catch (IOException e) 
+        {
+         
+          e.printStackTrace();
+        }
+        
+        return deliverydetail;
+        
+                 
     }
 
    

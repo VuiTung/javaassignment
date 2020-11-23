@@ -444,7 +444,9 @@ char pass = password1.getEchoChar();
                     shift="day shift";
                 }
                 managingStaff std = new managingStaff();
-                int IDline = std.generateID();
+                Fileoperator std1 =new Fileoperator();
+                
+                int IDline = std1.generateID(0, "assi.txt");
                 std.setFullname(Fullname.getText());
                 std.setID(IDline);
                 std.setPassword(password);
@@ -460,7 +462,9 @@ char pass = password1.getEchoChar();
             this.hide();
             }else{
                  deliveryStaff std = new deliveryStaff();
-                int IDline = std.generateID();
+                Fileoperator std1 =new Fileoperator();
+                
+                int IDline = std1.generateID(0, "assi.txt");
                 std.setFullname(Fullname.getText());
                 std.setID(IDline);
                 std.setPassword(password);
