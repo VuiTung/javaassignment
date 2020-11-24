@@ -93,10 +93,12 @@ public class viewreplypage extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Reply:");
 
+        contentb.setEditable(false);
         contentb.setColumns(20);
         contentb.setRows(5);
         jScrollPane1.setViewportView(contentb);
 
+        contenta.setEditable(false);
         contenta.setColumns(20);
         contenta.setRows(5);
         jScrollPane2.setViewportView(contenta);
