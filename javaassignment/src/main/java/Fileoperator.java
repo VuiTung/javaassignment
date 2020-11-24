@@ -405,8 +405,7 @@ public class Fileoperator {
         {
           e.printStackTrace();
         }
-
-        int[][] deliverylist = new int[2][lines];
+        int[][] deliverylist = new int[2][lines+1];
         try 
            {
             BufferedReader in = new BufferedReader(new FileReader("assi.txt"));
@@ -854,6 +853,52 @@ public String[][] returndeliveryreport() {
         
                  
     }
-
+        public String[] generatedeliverystaffid(){
+        FileWriter file = null;
+        int lines =0;
+        try{
+         BufferedReader reader = new BufferedReader(new FileReader("assi.txt"));
+               String line;
+                while ((line=reader.readLine()) != null){ 
+                 String[] values = line.split(",");
+                if(values[7].equals("Delivery staff")){
+                    lines++;
+                }
+                }
+                reader.close();
+                
+                }
+             catch(IOException es){
+                System.out.println(es.toString());  
+                
+        }
+        System.out.println(lines+1);
+        String[] returnid = new String[lines + 1];
+        returnid[0]="All";
+        try{
+         BufferedReader reader2 = new BufferedReader(new FileReader("assi.txt"));
+               String line;
+               int i =1;
+               while(i<lines+1){
+                while ((line=reader2.readLine()) != null){ 
+                 String[] values = line.split(",");
+                 
+                if(values[7].equals("Delivery staff")){
+                    returnid[i]=values[0];
+                    i++;
+                }
+                 }
+                }
+                reader2.close();
+                
+                }
+             catch(IOException es){
+                System.out.println(es.toString());  
+                
+        }
+        System.out.println(returnid[0]+ " and " + returnid[1]+ " and "+ returnid[2]);
+        return returnid;
+        
+    }
    
 }

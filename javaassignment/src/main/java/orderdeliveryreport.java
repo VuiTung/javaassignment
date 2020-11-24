@@ -1,9 +1,12 @@
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 import java.text.*;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,7 +18,7 @@ import javax.swing.JTable;
  *
  * @author user
  */
-public class orderdeliveryreport extends javax.swing.JFrame {
+public class orderdeliveryreport extends javax.swing.JFrame implements ActionListener{
 
     /**
      * Creates new form orderdeliveryreport
@@ -24,6 +27,10 @@ public class orderdeliveryreport extends javax.swing.JFrame {
         initComponents();
         defaul();
         defaul2();
+        combofill();
+        cb1.addActionListener(this) ;
+        cb2.addActionListener(this) ;
+        cb3.addActionListener(this) ;
     }
     DefaultTableModel model;
    private void defaul(){
@@ -54,9 +61,37 @@ public class orderdeliveryreport extends javax.swing.JFrame {
         }
         
     }
+    public void actionPerformed(ActionEvent e) {
+        String orderstatus = String.valueOf(cb2.getSelectedItem());
+        String deliverystatus = String.valueOf(cb1.getSelectedItem());
+        String deliverystaff = String.valueOf(cb3.getSelectedItem());
+        if(deliverystatus.equals("All") && deliverystaff.equals("All")){
+            defaul2();
+        }else if(deliverystatus.equals("All") && deliverystaff.equals("All")==false){
+             defaul5(deliverystaff);
+        }else if(deliverystatus.equals("All")==false && deliverystaff.equals("All")){
+            defaul4(deliverystatus);
+        }else{
+        defaul6(deliverystaff, deliverystatus);
+    }
+        if(orderstatus.equals("All")){
+            defaul();
+        }else{
+            defaul3(orderstatus);
+        }
+        
+     }
+    DefaultComboBoxModel mod ;
+    private void combofill(){
+       cb3.removeAllItems();
+       Fileoperator std = new Fileoperator();
+       String[] id= std.generatedeliverystaffid();  
+       mod = new DefaultComboBoxModel(id);
+           cb3.setModel(mod);
+    }
     public void defaul2(){
 
-                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID"};
+                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID", "Delivery Staff ID"};
         model =(DefaultTableModel)display2.getModel();
         model.setRowCount(0);//clear the model
         display2.revalidate();
@@ -69,13 +104,13 @@ public class orderdeliveryreport extends javax.swing.JFrame {
         while(i<lines+1){
 
             
-            String []Arra = new String[5];
+            String []Arra = new String[6];
             Arra[0]=A[0][i];
             Arra[1]=A[1][i];
             Arra[2]=A[2][i];
             Arra[3]=A[3][i];
             Arra[4]=A[4][i];
-            
+            Arra[5]=A[5][i];
             model.addRow(Arra);
             model.setColumnIdentifiers(columnNames);
 
@@ -83,10 +118,131 @@ public class orderdeliveryreport extends javax.swing.JFrame {
                         i++;
         }  
     }
+       private void defaul3(String Status){
+    String[] columnNames ={"ID","Owner","Weight","Date","Status", "Price (RM)"};
+        model =(DefaultTableModel)display.getModel();
+        model.setRowCount(0);//clear the model
+        display.revalidate();
+        //function here
+        Fileoperator std =new Fileoperator();
+        String[][] A =std.returnorderlist();
+        int lines = Integer.parseInt(A[0][0]);
+        
+
+
+        int i =1;
+        while(i<lines+1)
+        {
+            String []Arra = new String[6];
+            Arra[0]=A[0][i];
+            Arra[1]=A[1][i];
+            Arra[2]=A[2][i];
+            Arra[3]=A[3][i];
+            Arra[4]=A[4][i];
+            Arra[5]=A[5][i];
+            if(A[4][i].equals(Status)){
+            model.addRow(Arra);
+            model.setColumnIdentifiers(columnNames);
+            }
+            i++;
+        }
+        
+    }
+       public void defaul4(String Status){
+
+                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID", "Delivery Staff ID"};
+        model =(DefaultTableModel)display2.getModel();
+        model.setRowCount(0);//clear the model
+        display2.revalidate();
+        //function here
+        Fileoperator std =new Fileoperator();
+        String[][] A =std.returndeliveryreport();
+        
+        int lines = Integer.parseInt(A[0][0]);
+        int i =1;
+        while(i<lines+1){
+
+            
+            String []Arra = new String[6];
+            Arra[0]=A[0][i];
+            Arra[1]=A[1][i];
+            Arra[2]=A[2][i];
+            Arra[3]=A[3][i];
+            Arra[4]=A[4][i];
+            Arra[5]=A[5][i];
+            if(A[2][i].equals(Status)){
+            model.addRow(Arra);
+            model.setColumnIdentifiers(columnNames);
+            }
+            
+                        i++;
+        }  
+    }  
+       public void defaul5(String delivery){
+
+                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID", "Delivery Staff ID"};
+        model =(DefaultTableModel)display2.getModel();
+        model.setRowCount(0);//clear the model
+        display2.revalidate();
+        //function here
+        Fileoperator std =new Fileoperator();
+        String[][] A =std.returndeliveryreport();
+        
+        int lines = Integer.parseInt(A[0][0]);
+        int i =1;
+        while(i<lines+1){
+
+            
+            String []Arra = new String[6];
+            Arra[0]=A[0][i];
+            Arra[1]=A[1][i];
+            Arra[2]=A[2][i];
+            Arra[3]=A[3][i];
+            Arra[4]=A[4][i];
+            Arra[5]=A[5][i];
+            if(A[5][i].equals(delivery)){
+            model.addRow(Arra);
+            model.setColumnIdentifiers(columnNames);
+            }
+            
+                        i++;
+        }  
+    }  
+       public void defaul6(String delivery, String Status){
+
+                String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID", "Delivery Staff ID"};
+        model =(DefaultTableModel)display2.getModel();
+        model.setRowCount(0);//clear the model
+        display2.revalidate();
+        //function here
+        Fileoperator std =new Fileoperator();
+        String[][] A =std.returndeliveryreport();
+        
+        int lines = Integer.parseInt(A[0][0]);
+        int i =1;
+        while(i<lines+1){
+
+            
+            String []Arra = new String[6];
+            Arra[0]=A[0][i];
+            Arra[1]=A[1][i];
+            Arra[2]=A[2][i];
+            Arra[3]=A[3][i];
+            Arra[4]=A[4][i];
+            Arra[5]=A[5][i];
+            if(A[5][i].equals(delivery)&&A[2][i].equals(Status)){
+            model.addRow(Arra);
+            model.setColumnIdentifiers(columnNames);
+            }
+            
+                        i++;
+        }  
+    }  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -97,6 +253,12 @@ public class orderdeliveryreport extends javax.swing.JFrame {
         display = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         display2 = new javax.swing.JTable();
+        cb1 = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        cb2 = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        cb3 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -184,6 +346,16 @@ public class orderdeliveryreport extends javax.swing.JFrame {
             display2.getColumnModel().getColumn(5).setResizable(false);
         }
 
+        cb1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Unsend", "Complete" }));
+
+        jLabel4.setText("Status");
+
+        jLabel5.setText("Status");
+
+        cb2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Done", "Undone" }));
+
+        jLabel6.setText("Delivery Staff");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -191,22 +363,46 @@ public class orderdeliveryreport extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(43, 43, 43)
+                        .addComponent(cb1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(cb3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1))
+                        .addGap(44, 44, 44)
+                        .addComponent(cb2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(cb2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(cb3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cb1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -238,32 +434,30 @@ public class orderdeliveryreport extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(415, 415, 415)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(411, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(252, 252, 252)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(224, 224, 224))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -274,7 +468,9 @@ public class orderdeliveryreport extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -287,7 +483,7 @@ public class orderdeliveryreport extends javax.swing.JFrame {
         try{
             PrintRequestAttributeSet set = new HashPrintRequestAttributeSet();
             set.add(OrientationRequested.LANDSCAPE);
-            display.print(JTable.PrintMode.FIT_WIDTH, header, footer, true, set, true);
+            display2.print(JTable.PrintMode.FIT_WIDTH, header, footer, true, set, true);
            
         }catch(java.awt.print.PrinterException e){
             System.out.println("error" +  e.getMessage());
@@ -301,7 +497,7 @@ public class orderdeliveryreport extends javax.swing.JFrame {
         try{
             PrintRequestAttributeSet set = new HashPrintRequestAttributeSet();
             set.add(OrientationRequested.LANDSCAPE);
-            display2.print(JTable.PrintMode.FIT_WIDTH, header2, footer2, true, set, true);
+            display.print(JTable.PrintMode.FIT_WIDTH, header2, footer2, true, set, true);
         }catch(java.awt.print.PrinterException e){
             System.out.println("error" +  e.getMessage());
         }
@@ -348,14 +544,21 @@ public class orderdeliveryreport extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb1;
+    private javax.swing.JComboBox<String> cb2;
+    private javax.swing.JComboBox<String> cb3;
     private javax.swing.JTable display;
     private javax.swing.JTable display2;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
