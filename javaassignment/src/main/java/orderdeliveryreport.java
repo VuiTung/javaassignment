@@ -72,7 +72,7 @@ public class orderdeliveryreport extends javax.swing.JFrame implements ActionLis
         }else if(deliverystatus.equals("All")==false && deliverystaff.equals("All")){
             defaul4(deliverystatus);
         }else{
-        defaul6(deliverystaff, deliverystatus);
+        defaul5(deliverystaff, deliverystatus);
     }
         if(orderstatus.equals("All")){
             defaul();
@@ -208,7 +208,7 @@ public class orderdeliveryreport extends javax.swing.JFrame implements ActionLis
                         i++;
         }  
     }  
-       public void defaul6(String delivery, String Status){
+       public void defaul5(String delivery, String Status){
 
                 String[] columnNames ={"Delivery Task ID","Date out","Status","Address", "Order ID", "Delivery Staff ID"};
         model =(DefaultTableModel)display2.getModel();
