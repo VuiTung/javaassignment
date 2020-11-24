@@ -155,11 +155,11 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Delivery Task ID", "Date out", "Status", "Address", "Order ID"
+                "Delivery Task ID", "Date out", "Status", "Address", "Order ID", "Delivery Staff ID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -171,6 +171,8 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
             display1.getColumnModel().getColumn(0).setResizable(false);
             display1.getColumnModel().getColumn(1).setResizable(false);
             display1.getColumnModel().getColumn(2).setResizable(false);
+            display1.getColumnModel().getColumn(4).setResizable(false);
+            display1.getColumnModel().getColumn(5).setResizable(false);
         }
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -181,11 +183,11 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Delivery Task ID", "Date out", "Status", "Address", "Order ID"
+                "Delivery Task ID", "Date out", "Status", "Address", "Order ID", "Delivery Staff ID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -199,6 +201,7 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
             display2.getColumnModel().getColumn(1).setResizable(false);
             display2.getColumnModel().getColumn(2).setResizable(false);
             display2.getColumnModel().getColumn(4).setResizable(false);
+            display2.getColumnModel().getColumn(5).setResizable(false);
         }
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
