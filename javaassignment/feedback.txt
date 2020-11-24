@@ -1,6 +1,3 @@
-3,lean,1,ababa,aaaaaaaaaaaaa,Replied
-3,lean,2,vbbbbbbbb,22222222222222222,Replied
-3,lean,3,44444444444,44444444444444,New
-3,lean,4,5555555555555,5555555555555555555555555,New
-1,Liong Vui Tung,5,dada,dqqqq,Replied
-1,Liong Vui Tung,7,IIIIIIIIIIIIIIIIOOOOOOOOO,1231231231,New
+1,Liong Vui Tung,1,The user interface,The user interface needed to upgrade its hard to use,New
+3,lean,2,The address is not clear,Please change the address input clearly,Replied
+3,lean,3,Front Size,The front size can be bigger if posible. Cause the font size is too small hard to read,Replied

@@ -30,6 +30,7 @@ public class Register extends javax.swing.JFrame implements ActionListener {
         initComponents();
         Shift.setVisible(false);
         position.addActionListener(this);
+        setResizable(false);
     }
  public void actionPerformed(ActionEvent e) {
         String Role = String.valueOf(position.getSelectedItem());
