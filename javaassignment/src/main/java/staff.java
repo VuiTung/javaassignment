@@ -332,7 +332,7 @@ class managingStaff extends staff{
             FileWriter fw= new FileWriter(tempfile, true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter pw = new PrintWriter(bw);
-            sc = new Scanner(new File(filepath)) ;
+            sc = new Scanner(new File(filepath));
             
                String temp;
             while(sc.hasNext())
@@ -373,7 +373,6 @@ class managingStaff extends staff{
             finally
         {
             sc.close();
-            
             oldfile.delete();
             File dump = new File(filepath);
             newfile.renameTo(dump);
