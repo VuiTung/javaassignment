@@ -871,7 +871,10 @@ class deliveryStaff extends staff{
         this.Assignedtransport = Assignedtransport;
     }
     public deliveryStaff(){}
-
+    
+    public deliveryStaff(order order){
+    this.order=order;
+    };
        
 
         public String getAssignedtransport() {
