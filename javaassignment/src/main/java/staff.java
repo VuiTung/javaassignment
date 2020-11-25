@@ -373,6 +373,7 @@ class managingStaff extends staff{
             finally
         {
             sc.close();
+            
             oldfile.delete();
             File dump = new File(filepath);
             newfile.renameTo(dump);
