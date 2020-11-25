@@ -90,11 +90,21 @@ public class updateuser extends javax.swing.JFrame {
         });
 
         age.setText(age2);
+        age.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ageKeyTyped(evt);
+            }
+        });
 
         pn.setText(pn2);
         pn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pnActionPerformed(evt);
+            }
+        });
+        pn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                pnKeyTyped(evt);
             }
         });
 
@@ -143,8 +153,12 @@ public class updateuser extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Password:");
 
+        err.setForeground(new java.awt.Color(255, 51, 51));
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Age:");
+
+        ageerror.setForeground(new java.awt.Color(255, 51, 51));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Phone Number:");
@@ -184,17 +198,19 @@ public class updateuser extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(err, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(err, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(email)
                                     .addComponent(pn)
                                     .addComponent(name)
-                                    .addComponent(ageerror, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE))
                                 .addGap(20, 20, 20)
-                                .addComponent(view)))))
+                                .addComponent(view))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ageerror, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(107, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -209,23 +225,23 @@ public class updateuser extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(view)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ageerror, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ageerror, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(pn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(err, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
+                .addGap(0, 0, 0)
+                .addComponent(err, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(plate, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -263,6 +279,8 @@ public class updateuser extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        errormsg.setForeground(new java.awt.Color(255, 51, 51));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -332,32 +350,49 @@ public class updateuser extends javax.swing.JFrame {
     }//GEN-LAST:event_pnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    if(checkEmpty()==false){
-        errormsg.setText("");
-        String shift;
-        if(st2.equals("day shift")||st2.equals("night shift")){
-        if(r1.isSelected()){
-                    shift= "day shift";
-                }else{
-                    shift= "night shift";
+    if(checkEmpty()==false)
+    {
+        boolean status = emailvalidation.email_validation(email.getText());
+        if(status)
+        {
+            errormsg.setText("");
+            String shift;
+            if(st2.equals("day shift")||st2.equals("night shift"))
+            {
+                if(r1.isSelected())
+                {
+                        shift= "day shift";
                 }
-                
-            errormsg.setText("");
-            staff std = new managingStaff(shift, name.getText(), Integer.parseInt(id2), password2, Integer.parseInt(age.getText()),pn.getText(), email.getText(),null, null);
-            std.updateprofile();
-            JOptionPane.showMessageDialog(rootPane, "profile updated successfully");
-            new menu1().setVisible(true);
-            this.hide();
-        }else{
-            System.out.println(plate.getText());
-            errormsg.setText("");
-            staff std = new managingStaff(plate.getText(), name.getText(), Integer.parseInt(id2), password2, Integer.parseInt(age.getText()),pn.getText(), email.getText(),null, null);
-            std.updateprofile();
-            JOptionPane.showMessageDialog(rootPane, "profile updated successfully");
-            new menu1().setVisible(true);
-            this.hide();
+                else
+                {
+                        shift= "night shift";
+                }
+
+                errormsg.setText("");
+                staff std = new managingStaff(shift, name.getText(), Integer.parseInt(id2), password2, Integer.parseInt(age.getText()),pn.getText(), email.getText(),null, null);
+                std.updateprofile();
+                JOptionPane.showMessageDialog(rootPane, "profile updated successfully");
+                new menu1().setVisible(true);
+                this.hide();
+            }
+            else
+
+            {
+                System.out.println(plate.getText());
+                errormsg.setText("");
+                staff std = new managingStaff(plate.getText(), name.getText(), Integer.parseInt(id2), password2, Integer.parseInt(age.getText()),pn.getText(), email.getText(),null, null);
+                std.updateprofile();
+                JOptionPane.showMessageDialog(rootPane, "profile updated successfully");
+                new menu1().setVisible(true);
+                this.hide();
+            }
         }
-    }else{
+        else{
+            errormsg.setText("Make sure your email is correct");
+        }
+    }
+    else
+    {
         errormsg.setText("Please complete the form");
     }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -388,38 +423,32 @@ public class updateuser extends javax.swing.JFrame {
             plate.setText(st2);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-    
-    
-    
-    private void ageKeyTyped(java.awt.event.KeyEvent evt) 
-    {                             
+
+    private void ageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ageKeyTyped
         char c = evt.getKeyChar();
-          if (!(Character.isDigit(c)|| c == KeyEvent.VK_PERIOD))
-          {
+          if (!(Character.isDigit(c)|| c == KeyEvent.VK_PERIOD)){
               ageerror.setText("Please enter valid age");
               evt.consume();
-          } else if (Character.isDigit(c))
-          {
+          } else if (Character.isDigit(c)){
         ageerror.setText("");
         
-          }
-      if(age.getText().length()==3)
-      {
-          evt.consume();
-      } 
     }
-    
-    private void pnKeyTyped(java.awt.event.KeyEvent evt) {                                     
-      char c = evt.getKeyChar();
-          if (!(Character.isDigit(c)|| c == KeyEvent.VK_PERIOD))
-          {
+      if(age.getText().length()==3){
+          evt.consume();
+      }         // TODO add your handling code here:
+    }//GEN-LAST:event_ageKeyTyped
+
+    private void pnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnKeyTyped
+                char c = evt.getKeyChar();
+          if (!(Character.isDigit(c)|| c == KeyEvent.VK_PERIOD)){
               err.setText("Please enter valid phone number");
               evt.consume();
-          } else if (Character.isDigit(c))
-          {
-            err.setText("");
-          }
-    } 
+          } else if (Character.isDigit(c)){
+        err.setText("");
+          } // TODO add your handling code here:
+    }//GEN-LAST:event_pnKeyTyped
+    
+    
     private boolean checkEmpty(){
        if(st2.equals("day shift")||st2.equals("night shift"))
     {

@@ -258,6 +258,11 @@ public class Register extends javax.swing.JFrame implements ActionListener {
         err.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         err.setForeground(new java.awt.Color(255, 0, 51));
         err.setToolTipText("");
+        err.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                errKeyTyped(evt);
+            }
+        });
 
         SorT.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         SorT.setForeground(new java.awt.Color(255, 255, 255));
@@ -308,7 +313,9 @@ public class Register extends javax.swing.JFrame implements ActionListener {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ageerror, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(ageerror, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(err, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(SorT)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -336,16 +343,13 @@ public class Register extends javax.swing.JFrame implements ActionListener {
                                         .addComponent(view, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(Fullname, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(position, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(password2, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(password2, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(83, 83, 83)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(err, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(44, Short.MAX_VALUE))
+                                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(141, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,13 +388,15 @@ public class Register extends javax.swing.JFrame implements ActionListener {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(password2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(err, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
@@ -401,9 +407,7 @@ public class Register extends javax.swing.JFrame implements ActionListener {
                         .addComponent(jLabel3)
                         .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(ageerror, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
-                .addComponent(err, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -413,7 +417,7 @@ public class Register extends javax.swing.JFrame implements ActionListener {
                     .addComponent(transport, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(Shift, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(errormsg, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -421,7 +425,7 @@ public class Register extends javax.swing.JFrame implements ActionListener {
                     .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 770));
@@ -466,74 +470,83 @@ char pass = password1.getEchoChar();
     }//GEN-LAST:event_password1ActionPerformed
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
-       if(checkEmpty()==true){
+if(checkEmpty()==true){
            errormsg.setText("Plese complete the form");
        }else{
            errormsg.setText("");
+
             String password = new String (password1.getPassword());
             String password3 = new String (password2.getPassword());
             if(password.equals(password3)){
-                errormsg.setText("");
-               
-                String Position1 = String.valueOf(position.getSelectedItem());
-                
-            
-                String gender;
-                String shift;
-                if(Male.isSelected()){
-                    gender= "Male";
-                }else{
-                    gender= "Female";
+                boolean status = emailvalidation.email_validation(email.getText());
+                if(status)
+                {
+                        errormsg.setText("");
+
+                        String Position1 = String.valueOf(position.getSelectedItem());
+
+
+                        String gender;
+                        String shift;
+                        if(Male.isSelected()){
+                            gender= "Male";
+                        }else{
+                            gender= "Female";
+                        }
+
+                    if(Position1.equals("Managing staff")){
+                        if(night.isSelected()){
+                            shift="night shift";
+                        }else{
+                            shift="day shift";
+                        }
+                        managingStaff std = new managingStaff();
+                        Fileoperator std1 =new Fileoperator();
+
+                        int IDline = std1.generateID(0, "assi.txt");
+                        std.setFullname(Fullname.getText());
+                        std.setID(IDline);
+                        std.setPassword(password);
+                        std.setAge(Integer.parseInt(age.getText()));
+                        std.setPN(phonenumber.getText());
+                        std.setEmail(email.getText());
+                        std.setShift(shift);
+                        std.setPosition(Position1);
+                        std.setGender(gender);
+                        std.addmanagingstaff();
+                        JOptionPane.showMessageDialog(rootPane, std.getPosition() + " added successfully");
+                    new menu1().setVisible(true);
+                    this.hide();
+                    }else{
+                         deliveryStaff std = new deliveryStaff();
+                        Fileoperator std1 =new Fileoperator();
+
+                        int IDline = std1.generateID(0, "assi.txt");
+                        std.setFullname(Fullname.getText());
+                        std.setID(IDline);
+                        std.setPassword(password);
+                        std.setAge(Integer.parseInt(age.getText()));
+                        std.setPN(phonenumber.getText());
+                        std.setEmail(email.getText());
+                        std.setAssignedtransport(transport.getText());
+                        std.setPosition(Position1);
+                        std.setGender(gender);
+                         std.adddeliverystaff();
+                    JOptionPane.showMessageDialog(rootPane, std.getPosition() + " added successfully");
+                    new menu1().setVisible(true);
+                    this.hide();
+                    }
                 }
-                
-            if(Position1.equals("Managing staff")){
-                if(night.isSelected()){
-                    shift="night shift";
-                }else{
-                    shift="day shift";
+                else{
+                    errormsg.setText("Make sure your email is correct");
                 }
-                managingStaff std = new managingStaff();
-                Fileoperator std1 =new Fileoperator();
-                
-                int IDline = std1.generateID(0, "assi.txt");
-                std.setFullname(Fullname.getText());
-                std.setID(IDline);
-                std.setPassword(password);
-                std.setAge(Integer.parseInt(age.getText()));
-                std.setPN(phonenumber.getText());
-                std.setEmail(email.getText());
-                std.setShift(shift);
-                std.setPosition(Position1);
-                std.setGender(gender);
-                std.addmanagingstaff();
-                JOptionPane.showMessageDialog(rootPane, std.getPosition() + " added successfully");
-            new menu1().setVisible(true);
-            this.hide();
-            }else{
-                 deliveryStaff std = new deliveryStaff();
-                Fileoperator std1 =new Fileoperator();
-                
-                int IDline = std1.generateID(0, "assi.txt");
-                std.setFullname(Fullname.getText());
-                std.setID(IDline);
-                std.setPassword(password);
-                std.setAge(Integer.parseInt(age.getText()));
-                std.setPN(phonenumber.getText());
-                std.setEmail(email.getText());
-                std.setAssignedtransport(transport.getText());
-                std.setPosition(Position1);
-                std.setGender(gender);
-                 std.adddeliverystaff();
-            JOptionPane.showMessageDialog(rootPane, std.getPosition() + " added successfully");
-            new menu1().setVisible(true);
-            this.hide();
             }
-            
-            }else{
-            errormsg.setText("make sure your password are the same");
+            ///
+            else{
+            errormsg.setText("Make sure your password are the same");
             }
-       }
-        
+           
+        }
     }//GEN-LAST:event_submitActionPerformed
 
     private void password2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password2ActionPerformed
@@ -570,6 +583,10 @@ char pass = password1.getEchoChar();
         transport.setText("");
         
     }//GEN-LAST:event_resetActionPerformed
+
+    private void errKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_errKeyTyped
+       // TODO add your handling code here:
+    }//GEN-LAST:event_errKeyTyped
 private boolean checkEmpty(){
     String password = new String (password1.getPassword());
    String password3 = new String (password2.getPassword());
