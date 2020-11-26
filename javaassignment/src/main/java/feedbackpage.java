@@ -47,6 +47,7 @@ public static String id;
         });
 
         errormsg.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        errormsg.setForeground(new java.awt.Color(255, 0, 0));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Title:");

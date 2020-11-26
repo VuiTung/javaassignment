@@ -1,3 +1,3 @@
-1,Liong Vui Tung,1,The user interface,The user interface needed to upgrade its hard to use,New
+1,Liong Vui Tung,1,The user interface,The user interface needed to upgrade its hard to use,Replied
 3,lean,2,The address is not clear,Please change the address input clearly,Replied
-3,lean,3,Front Size,The front size can be bigger if posible. Cause the font size is too small hard to read,Replied
+3,lean,3,Front Size,The front size can be bigger if posible. Cause the font size is too small hard to read,New

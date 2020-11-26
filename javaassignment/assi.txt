@@ -1,4 +1,4 @@
-1,Liong Vui Tung,123,21,Male,012555555,TP050801@mail.apu.edu.my,Managing staff,night shift
+1,Liong Vui Tung,123,21,Male,123123123,TP050801@mail.apu.edu.my,Managing staff,night shift
 2,Willis Chang Kai Xun,123,21,Male,0127778888,TP050800@mail.apu.edu.my,Delivery staff,ST5656D
-3,lean,123,13,Male,0126231212,Lean@gmail.com,Delivery staff,qe11233
+3,lean,123,12,Male,0126231212,Lean@gmail.com,Delivery staff,qe11233
 5,Goh,123,23,Male,0127776677,Goh@mail.com,Delivery staff,St6767D
