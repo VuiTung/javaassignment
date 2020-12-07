@@ -325,35 +325,34 @@ public class Deliverytasklistadmin extends javax.swing.JFrame {
         }  
         
  
-        model2 =(DefaultTableModel)display2.getModel();
+    model2 =(DefaultTableModel)display2.getModel();
         model2.setRowCount(0);//clear the model
         display2.revalidate();
         //function here
         Fileoperator std2 =new Fileoperator();
         String[][] A2 =std2.returnfuturedeliverylist(date);
-        
-        int lines2 = Integer.parseInt(A[0][0]);
-        int i2 =1;
-        while(i2<lines+1){
 
-          
-            String []Arra2 = new String[5];
+        int lines2 = Integer.parseInt(A2[0][0]);
+        int i2 =1;
+        while(i2<lines2+1){
+
+
+            String []Arra2 = new String[6];
             Arra2[0]=A2[0][i2];
             Arra2[1]=A2[1][i2];
             Arra2[2]=A2[2][i2];
             Arra2[3]=A2[3][i2];
             Arra2[4]=A2[4][i2];
             Arra2[5]=A2[5][i2];
-            
              if(Arra2[0].toLowerCase().contains(Text1.getText().toLowerCase())||Arra2[4].toLowerCase().contains(Text1.getText().toLowerCase())||Arra2[3].toLowerCase().contains(Text1.getText().toLowerCase())){
 
             model2.addRow(Arra2);//add a row to the table mode
             }
             model2.setColumnIdentifiers(columnNames);
 
-            
+
                         i2++;
-        }  
+        }
     }//GEN-LAST:event_Text1KeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

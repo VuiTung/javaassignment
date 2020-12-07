@@ -272,7 +272,7 @@ public class reportlist extends javax.swing.JFrame {
         
         catch(Exception e3)
         {
-            JOptionPane.showMessageDialog(rootPane, "Please select a user");
+            JOptionPane.showMessageDialog(rootPane, "Please select a report");
         }
         
     }//GEN-LAST:event_jButton3ActionPerformed

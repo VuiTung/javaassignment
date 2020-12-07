@@ -1,6 +1,14 @@
 1,2020/11/25,Unsend,123 taman gunung,1,2
-2,2020/11/25,Unsend,22 Taman Pisang,2,3
+2,2020/11/25,Complete,22 Taman Pisang,2,3
 3,2020/11/26,Unsend,21 Taman Berjaya,3,2
 4,2020/11/26,Complete,12 Taman Bahagia,4,3
-5,2020/11/26,Unsend,33 Taman Ceria,5,3
+5,2020/11/26,Complete,33 Taman Ceria,5,3
 6,2020/11/26,Unsend,1 Taman Ria,6,5
+7,2020/12/07,Complete,123 jalan indah,7,2
+8,2020/12/08,Unsend,taman bunga no5656,8,2
+9,2020/12/08,Unsend,123 Taman Ching,9,3
+10,2020/12/08,Unsend,32 Taman Chong,10,5
+11,2020/12/08,Unsend,33 Taman Sial,11,2
+12,2020/12/08,Unsend,66 Taman Quan,12,3
+13,2020/12/08,Unsend,01 Taman Xiao,13,5
+14,2020/12/08,Unsend,taman happy No 2525,14,2

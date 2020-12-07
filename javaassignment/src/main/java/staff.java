@@ -259,8 +259,9 @@ public class staff {
                 file.close();
                 System.out.println("success");
                 }
-                    catch(IOException es){
-                        System.out.println(es.toString());
+                    catch(IOException es)
+                {
+                    System.out.println(es.toString());
                 }
             
                         
